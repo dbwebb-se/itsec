@@ -1,0 +1,7 @@
+Jag hoppas installationen av VirtualBox gick bra och att du fått igång Guest Additions. Skärmdumpen finns på plats och jag har även tittat på din logg-fil och den innehåller de delarna som är tänkt.
+
+Jag kollade igenom din redovisningstext och den är välskriven och reflekterande.
+
+Allt är väl, så här långt. Kör på!
+
+$TEACHER_SIGNATURE
