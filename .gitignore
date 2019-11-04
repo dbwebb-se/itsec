@@ -1,5 +1,8 @@
 /build/
 /bin/
+me/
+log-gui-inspect.ansi
+log-gui-main.ansi
 node_modules/
 vendor/
 package-lock.json
