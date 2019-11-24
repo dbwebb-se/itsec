@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "admin",
+            "admin": 1
+        },
+        {
+            "username": "doe",
+            "password": "doe",
+            "admin": 0
+        },
+        {
+            "username": "coolDude81",
+            "password": "notMyPassword",
+            "admin": 0
+        },
+        {
+            "username": "hackerman",
+            "password": "@myPassword19",
+            "admin": 0
+        },
+        {
+            "username": "sysadmin",
+            "password": "flowerpot2019",
+            "admin": 1
+        }
+    ]
+}
