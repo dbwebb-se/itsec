@@ -1,0 +1,28 @@
+<form class="manage-part">
+    <table class="manage-users">
+        <h1>User</h1>
+        <tr>
+            <th>Id</th><th>Username</th><th>Password</th>
+        </tr>
+        <tr>
+            <td><input type="text" value="<%= session.viewUser[0].id %>" readonly></td>
+            <td><input type="text" value="<%= session.viewUser[0].name %>" readonly></td>
+            <td><input type="text" value="<%= session.viewUser[0].pass %>" readonly></td>
+        </tr>
+    </table>
+</form>
+<form class="manage-part">
+    <table class="manage-users">
+        <h1>Account(s)</h1>
+        <tr>
+            <th>Id</th><th>Accountname</th><th>Amount</th>
+        </tr>
+        <% session.accounts.forEach(function(item) { %>
+            <tr>
+                <td><input type="text" value="<%= item.id %>" readonly></td>
+                <td><input type="text" value="<%= item.acc_name %>" readonly></td>
+                <td><input type="text" value="<%= item.amount %>" readonly></td>
+            </tr>
+        <% }) %>
+    </table>
+</form>
