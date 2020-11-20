@@ -30,7 +30,156 @@
 # Agenda
 
 * OWASP Top Ten
-* Examples
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# OWASP
+
+* The Open Web Application Security Project
+* Nonprofit
+* To improve security of software
+* Tools, resources, community, networking, education, training
+* [OWASP Top Ten 2017](https://owasp.org/www-project-top-ten/2017/)
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# CWE
+
+* Common Weakness Enumeration
+* Community-developed list of software and hardware weakness types
+* [2020 CWE Top 25](https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html)
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# CVE
+
+* Common Vulnerabilities and Exposures
+* International cybersecurity community effort
+* List of entries for publicly known cybersecurity vulnerabilities
+* Each containing an identification number, a
+description, and at least one public reference
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# OWASP, CWE, CVE
+
+* [OWASP A1:2017-Injection](https://owasp.org/www-project-top-ten/2017/A1_2017-Injection.html)
+* [OWASP SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
+* [CWE-89: SQL Injection](https://cwe.mitre.org/data/definitions/89.html)
+* [CVE-2020-9402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-9402)
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# OWASP Top Ten 2017
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 1 Injection
+
+Almost any source of data can be an injection vector, environment variables, parameters, external and internal web services, and all types of users. Injection flaws occur when an attacker can send hostile data to an interpreter.
+
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 2 Broken authentication
+
+Attackers have access to hundreds of millions of valid username and password combinations for credential stuffing, default administrative account lists, automated brute force, and dictionary attack tools. Session management attacks are well understood, particularly in relation to unexpired session tokens.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 3 Sensitive Data Exposure
+
+Rather than directly attacking crypto, attackers steal keys, execute man-in-the-middle attacks, or steal clear text data off the server, while in transit, or from the user’s client, e.g. browser. A manual attack is generally required. Previously retrieved password databases could be brute forced by Graphics Processing Units (GPUs).
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 4 XML External Entites (XXE)
+
+Attackers can exploit vulnerable XML processors if they can upload XML or include hostile content in an XML document, exploiting vulnerable code, dependencies or integrations.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 5 Broken Access Control
+
+Exploitation of access control is a core skill of attackers. SAST (static) and DAST (dynamic) tools can detect the absence of access control but cannot verify if it is functional when it is present. Access control is detectable using manual means, or possibly through automation for the absence of access controls in certain frameworks.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 6 Security Misconfiguration
+
+Attackers will often attempt to exploit unpatched flaws or access default accounts, unused pages, unprotected files and directories, etc to gain unauthorized access or knowledge of the system.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 7 Cross-Site Scripting XSS
+
+Automated tools can detect and exploit all three forms of XSS, and there are freely available exploitation frameworks.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# 8 Insecure Deserialization
+
+Exploitation of deserialization is somewhat difficult, as off the shelf exploits rarely work without changes or tweaks to the underlying exploit code.
+
+</script>
+
+<script data-role="slide" data-markdown type="text/html">
+# 9 Using Components with Known Vulnerabilities
+
+While it is easy to find already-written exploits for many known vulnerabilities, other vulnerabilities require concentrated effort to develop a custom exploit.
+
+</script>
+
+<script data-role="slide" data-markdown type="text/html">
+# 10 Insufficient Logging &amp; Monitoring
+
+Exploitation of insufficient logging and monitoring is the bedrock of nearly every major incident.
+Attackers rely on the lack of monitoring and timely response to achieve their goals without being detected.
+
+</script>
+
+
+
+<!--
 
 Kanske exempel med SQL injection i databas, som går att ladda ned
 
@@ -48,77 +197,12 @@ Kanske jobba i grupp och pröva attackera systemet?
 
 Delad session
 
+* Gå in och leta reda på ditt lösenord på en webbplats som du har sparat.
 
+* Se allas betyg i databasen.
+* Uppdatera ditt betyg i en databas.
 
-</script>
-
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# OWASP Top Ten 2017
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# OWASP Top Ten 2017
-
-* 1 Injection
-* 2 Broken authentication
-* 3 Sensitive Data Exposure
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# OWASP Top Ten 2017
-
-* 4 XML External Entites (XXE)
-* 5 Broken Access Control
-* 6 Security Misconfiguration
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# OWASP Top Ten...
-
-* 7 Cross-Site Scripting XSS
-* 8 Insecure Deserialization
-* 9 Using Components with Known Vulnerabilities
-* 10 Insufficient Logging &amp; Monitoring
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Web Application helpers...
-
-* Lets review a [code sample for XSS](https://github.com/Webbprogrammering/websoft/blob/master/example/security/xss_codesample.php) injection and how to avoid it.
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Web Application helpers...
-
-* User supplied content (blog, comments)
-* WYSIWYG editors
-* Markdown (parsers)
-* HTMLPurify
-* What tags to allow, `<?php ?>` ?
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Web Application helpers...
+* Dölj en hemlighet i en fil på delad server.
 
 * `?sort=descending` (SQL injection?)
 
@@ -147,109 +231,33 @@ if (!in_array($orderby, $orderbyValid)) {
 </script>
 
 
-
-<!--
-<script data-role="slide" data-markdown type="text/html">
-# Example XSS
-
-https://dbwebb.se/forum/viewtopic.php?f=12&t=1702#p46756
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Example CSRF
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Example file injection
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# Example remote code execution
-
-https://dbwebb.se/forum/viewtopic.php?f=12&t=1702#p27398
-
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
 # Example SQL injection
 
-</script>
-
-
-
-<script data-role="slide" data-markdown type="text/html">
+== instead of ===
 # Example Login using ==
 
-</script>
--->
+# Example file injection
 
-
-
-<!--
-<script data-role="slide" data-markdown type="text/html">
-# Validate incoming...
-
-Code sample
-
-XSS
-
-CSRF
-
-Injection SQL, file include, remote code execution
-
-</script>
--->
-
-
-<script data-role="slide" data-markdown type="text/html">
-# If there is time
+# Example remote code execution
+# Remote file inclusion
 
 * [Some code samples](https://github.com/dbwebb-se/htmlphp/tree/master/example/security)
 
-</script>
-
-
-
-
-<script data-role="slide" data-markdown type="text/html">
-# OWASP Top Ten 2017
-
-1. Injection
-2. Broken authentication
-3. Sensitive Data Exposure
-4. XML External Entites (XXE)
-5. Broken Access Control
-6. Security Misconfiguration
-7. Cross-Site Scripting XSS
-8. Insecure Deserialization
-9. Using Components with Known Vulnerabilities
-10. Insufficient Logging &amp; Monitoring
-
-</script>
+-->
 
 
 
 <script data-role="slide" data-markdown type="text/html">
-# Validate incoming
+# Programmer Golden Rules
 
-* Trust no one and no data
+* Learn to recognize unsecure data
 * Prepare unsecure data
 * Validate incoming (server side)
     * JavaScript client side is not enough
-* Check incoming value domain and type
+    * Check incoming value domain and type
 * Fail when corrupt input
-* "Fail hard, fail early"
+    * "Fail hard, fail early"
+* Save data as submitted
 * Escape data on output
 
 </script>
@@ -259,10 +267,6 @@ Injection SQL, file include, remote code execution
 <script data-role="slide" data-markdown type="text/html">
 # Learn more?
 
-* Learn the operating system (Linux or Windows) as a client and as a server
-* Learn to write a server/service
-* Study on how to write good and clean code
-* Put a Pi as a gateway to your own home...
 * Capture The Flag (CTF)
 
 </script>
