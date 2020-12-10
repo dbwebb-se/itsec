@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  itsec-anax-php:
+    image: anax/dev:php73-apache
+    volumes:
+      - .:/home/anax/repo
+    ports:
+      - 8182:80
+  itsec-anax-db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - persistent-db:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+  itsec-anax-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8181:8080
+
+volumes:
+  persistent-db:

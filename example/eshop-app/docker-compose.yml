@@ -14,6 +14,7 @@ services:
       MYSQL_ROOT_PASSWORD: example
     volumes:
       - persistent-db:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
   itsec-anax-adminer:
     image: adminer
     restart: always
