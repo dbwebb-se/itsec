@@ -6,9 +6,8 @@ return [
     "routes" => [
         [
             "info" => "Beställningar",
-            "requestMethod" => "GET | POST",
-            "path" => "search",
-            "callable" => ["searchController", "displayResult"]
+            "mount" => "search",
+            "handler" => "\Course\Search\SearchController"
         ]
     ]
 ];

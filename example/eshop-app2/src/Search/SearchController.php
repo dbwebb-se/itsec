@@ -2,20 +2,15 @@
 
 namespace Course\Search;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
 use \Course\Product\Product;
 
 
-class SearchController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class SearchController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -24,16 +19,14 @@ class SearchController implements
      * @method displayResult()
      * @return mixed
      */
-    public function displayResult()
+    public function indexActionPost()
     {
         $title = "Sökresultat";
-        $view = $this->di->get("view");
-        $pageRender = $this->di->get("pageRender");
 
         $url = $this->di->get("url");
         $response = $this->di->get("response");
 
-        $db = $this->di->get("db");
+        $db = $this->di->get("dbqb");
 
         $product = new Product;
         $product->setDb($db);
@@ -53,7 +46,6 @@ class SearchController implements
             "searchResult" => $searchResult
         ];
 
-        $view->add("search/search", $data);
-        $pageRender->renderPage(["title" => $title]);
+        return $this->di->get("render")->display($title, "search/search", $data);
     }
 }
