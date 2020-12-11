@@ -1,7 +1,7 @@
 <?php
 namespace Course\User;
 
-use \Anax\Database\ActiveRecordModel;
+use \Anax\DatabaseActiveRecord\ActiveRecordModel2 as ActiveRecordModel;
 
 class User extends ActiveRecordModel
 {

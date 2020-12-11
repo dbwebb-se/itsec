@@ -2,10 +2,8 @@
 
 namespace Course\Admin;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
 use \Course\User\User;
 use \Course\Product\Product;
@@ -20,14 +18,9 @@ use \Course\Admin\HTMLForm\CouponCreateForm;
 
 
 
-class AdminController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class AdminController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
-
-
+    use ContainerInjectableTrait;
 
     /**
      * Render admin settings.
@@ -43,11 +36,12 @@ class AdminController implements
     /**
      * Render admin products.
      */
-    public function displayProductsAdmin()
+    public function indexAction()
     {
-        $this->checkIfAdmin();
+        // $this->checkIfAdmin();
 
         $request = $this->di->get("request");
+        $page = $this->di->get("page");
 
         $amountPerPage = 50;
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;

@@ -2,34 +2,29 @@
 
 namespace Course\Category;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 use \Course\Category\Category;
 
-class CategoryController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class CategoryController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
     /**
      * This function handles the rendering of all categories in the database.
      */
-    public function getAllCategories()
+    public function indexAction()
     {
         $category = new Category();
-        $category->setDb($this->di->get("db"));
+        $category->setDb($this->di->get("dbqb"));
 
         $data = [
             "categoriesFemale" => $category->getAllCategoriesGender(0),
             "categoriesMale" => $category->getAllCategoriesGender(1)
         ];
 
-        $this->di->get("render")->display("Kategorier", "category/categories", $data);
+        return $this->di->get("render")->display("Kategorier", "category/categories", $data);
     }
 
 
@@ -40,10 +35,10 @@ class CategoryController implements
      * @param integer $parentID ID to parent category
      *
      */
-    public function getSpecificCategory($parentID)
+    public function argumentActionGet($parentID)
     {
         $category = new Category();
-        $category->setDb($this->di->get("db"));
+        $category->setDb($this->di->get("dbqb"));
 
         $title = $category->getSpecificCategory($parentID);
         $categories = $category->getAllSubCategories($parentID);
@@ -59,6 +54,6 @@ class CategoryController implements
             "categories" => $categories
         ];
 
-        $this->di->get("render")->display("Kategori", "category/specificCategory", $data);
+        return $this->di->get("render")->display("Kategori", "category/specificCategory", $data);
     }
 }

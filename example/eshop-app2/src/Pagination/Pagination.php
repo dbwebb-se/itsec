@@ -1,14 +1,14 @@
 <?php
 namespace Course\Pagination;
 
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 use \Course\Product\Product;
 use \Course\Category\Category;
 
-class Pagination implements InjectionAwareInterface
+class Pagination implements ContainerInjectableInterface
 {
-    use InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
     /**
@@ -25,7 +25,7 @@ class Pagination implements InjectionAwareInterface
     public function pagination($getAll, $f1, $f2, $args, $url, $path = "")
     {
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
         $amountOfProducts = count($product->$f1(...$getAll));
 
         $request = $this->di->get("request");

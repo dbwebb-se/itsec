@@ -4,11 +4,6 @@ namespace Course\Base;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
-
-// use \Anax\Configure\ConfigureInterface;
-// use \Anax\Configure\ConfigureTrait;
-// use \Anax\DI\InjectionAwareInterface;
-// use \Anax\DI\InjectionAwareTrait;
 use Course\Base\Base;
 
 use Course\Order\OrderItem;
@@ -27,7 +22,6 @@ class BaseController implements ContainerInjectableInterface
     {
         $title = "Frontpage";
         $view = $this->di->get("view");
-        //$pageRender = $this->di->get("pageRender");
         $page = $this->di->get("page");
         $db = $this->di->get("dbqb");
 
@@ -51,12 +45,6 @@ class BaseController implements ContainerInjectableInterface
             "productsUnder500Male" => $product->getProductsUnder500(1, 10),
         ];
 
-
-        $view->add("base/home", [$data, $under500]);
-        
-        //return "hi";
-        
-        //$pageRender->renderPage(["title" => $title]);
-        return $page->render(["title" => $title]);
+        return $this->di->get("render")->display($title, "base/home", [$data, $under500]);
     }
 }

@@ -7,20 +7,20 @@ return [
         [
             "info" => "All Category",
             "requestMethod" => "GET",
-            "path" => "category",
-            "callable" => ["categoryController", "getAllCategories"]
+            "mount" => "category",
+            "handler" => "\Course\Category\CategoryController"
         ],
-        [
-            "info" => "Specific category",
-            "requestMethod" => "GET",
-            "path" => "category/{id:digit}",
-            "callable" => ["categoryController", "getSpecificCategory"]
-        ],
-        [
-            "info" => "Specific subcategory",
-            "requestMethod" => "GET",
-            "path" => "category/{id:digit}/{id:digit}/{gender:digit}",
-            "callable" => ["categoryController", "getSpecificSubCategory"]
-        ]
+        // [
+        //     "info" => "Specific category",
+        //     "requestMethod" => "GET",
+        //     "mount" => "category/{id:digit}",
+        //     "handler" => "\Course\Category\CategoryController"
+        // ],
+        // [
+        //     "info" => "Specific subcategory",
+        //     "requestMethod" => "GET",
+        //     "mount" => "category/{id:digit}/{id:digit}/{gender:digit}",
+        //     "handler" => "\Course\Category\CategoryController"
+        // ]
     ]
 ];

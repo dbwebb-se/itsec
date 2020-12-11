@@ -54,7 +54,10 @@
         "anax/url": "^2.0.0-beta.2",
         "anax/view": "^2.0.2",
         "mos/cimage": "^0.7.20",
-        "symfony/yaml": "^3.4.0"
+        "symfony/yaml": "^3.4.0",
+        "twbs/bootstrap": "^4.0.0",
+        "components/jquery": "^3.3",
+        "components/font-awesome": "^5.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12",

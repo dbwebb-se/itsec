@@ -9,7 +9,6 @@ return [
             "shared" => true,
             "callback" => function () {
                 $db = new \Anax\Database\Database();
-                //$db = new \Anax\DatabaseQueryBuilder\DatabaseQueryBuilder();
 
                 // Load the configuration files
                 $cfg = $this->get("configuration");
