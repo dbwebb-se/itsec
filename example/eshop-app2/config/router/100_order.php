@@ -6,15 +6,13 @@ return [
     "routes" => [
         [
             "info" => "Beställningar",
-            "requestMethod" => "GET",
-            "path" => "orders",
-            "callable" => ["orderController", "getOrderPage"]
+            "mount" => "orders",
+            "handler" => ["\Course\Order\OrderController", "getOrderPage"]
         ],
         [
             "info" => "Beställningar",
-            "requestMethod" => "GET",
-            "path" => "order/{id:digit}",
-            "callable" => ["orderController", "getSingleOrder"]
+            "mount" => "order/{id:digit}",
+            "handler" => ["\Course\Order\OrderController", "getSingleOrder"]
         ]
     ]
 ];

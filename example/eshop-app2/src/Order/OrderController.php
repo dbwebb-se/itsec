@@ -2,11 +2,8 @@
 
 namespace Course\Order;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
-
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 use \Course\Order\Orders;
 use \Course\Order\OrderItem;
 
@@ -21,12 +18,9 @@ use \Course\Coupon\Coupon;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class OrderController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class OrderController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-        InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -42,17 +36,17 @@ class OrderController implements
         $this->checkLoggedIn();
 
         $user = new User();
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
         $userInformation = $user->getUserInformationByEmail($session->get("email"));
 
         $order = new Orders();
-        $order->setDb($this->di->get("db"));
+        $order->setDb($this->di->get("dbqb"));
 
         $data = [
             "orders" => $order->getAllOrderByUserID($userInformation->userID),
         ];
 
-        $this->di->get("render")->display("Ordrar", "order/orders", $data);
+        return $this->di->get("render")->display("Ordrar", "order/orders", $data);
     }
 
 
@@ -70,21 +64,21 @@ class OrderController implements
         $this->checkLoggedIn();
 
         $user = new User();
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
         $userInformation = $user->getUserInformationByEmail($session->get("email"));
 
         $order = new Orders();
-        $order->setDb($this->di->get("db"));
+        $order->setDb($this->di->get("dbqb"));
         $orders = $order->getAllOrderByUserID($userInformation->userID);
 
         $orderNumbers = $this->getOrderNumbers($orders);
 
         if (in_array($orderID, $orderNumbers)) {
             $product = new Product();
-            $product->setDb($this->di->get("db"));
+            $product->setDb($this->di->get("dbqb"));
 
             $orderItem = new OrderItem();
-            $orderItem->setDb($this->di->get("db"));
+            $orderItem->setDb($this->di->get("dbqb"));
 
             $items = $orderItem->getAllItemsWhereID($orderID);
 
@@ -101,7 +95,7 @@ class OrderController implements
 
             if ($order->couponID !== null) {
                 $coupon = new Coupon();
-                $coupon->setDb($this->di->get("db"));
+                $coupon->setDb($this->di->get("dbqb"));
                 $coupon->getCoupon($order->couponID);
             }
 
@@ -117,13 +111,11 @@ class OrderController implements
                 "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),
             ];
 
-            $this->di->get("render")->display("Order", "order/order", $data);
+            return $this->di->get("render")->display("Order", "order/order", $data);
         }
-        $url = $this->di->get("url");
-        $response = $this->di->get("response");
-        $login = $url->create("orders");
-        $response->redirect($login);
-        return false;
+
+        $url = $this->di->get("url")->create("orders");
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -135,17 +127,14 @@ class OrderController implements
      */
     public function checkLoggedIn()
     {
-        $url = $this->di->get("url");
-        $response = $this->di->get("response");
         $session = $this->di->get("session");
-        $login = $url->create("user/login");
 
         if ($session->has("email")) {
             return true;
         }
 
-        $response->redirect($login);
-        return false;
+        $url = $this->di->get("url")->create("user/login");
+        return $this->di->get("response")->redirect($url);
     }
 
 
