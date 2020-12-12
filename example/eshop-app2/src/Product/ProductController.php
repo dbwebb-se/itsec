@@ -2,20 +2,15 @@
 
 namespace Course\Product;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 use \Course\Product\Product;
 use \Course\Category\Category;
 use \Course\Pagination\Pagination;
 
-class ProductController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class ProductController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -25,10 +20,10 @@ class ProductController implements
      * @param  int $productId ID of product.
      * @return mixed
      */
-    public function getSpecificProduct($productId)
+    public function idActionGet($productId)
     {
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
         $data = $product->getProducts("productID", $productId);
 
         if (empty($data)) {
@@ -37,8 +32,7 @@ class ProductController implements
             return false;
         }
 
-        $this->di->get("render")->display("Produkt", "product/product", $data);
-        return true;
+        return $this->di->get("render")->display("Produkt", "product/product", $data);
     }
 
 
@@ -84,10 +78,10 @@ class ProductController implements
      * @method getAllProductsUnder500Female()
      * @return mixed
      */
-    public function getAllProductsUnder500Female()
+    public function under500FemaleAction()
     {
         $products = new Product();
-        $products->setDb($this->di->get("db"));
+        $products->setDb($this->di->get("dbqb"));
 
         $request = $this->di->get("request");
 
@@ -103,7 +97,7 @@ class ProductController implements
             "amountOfProducts" => $res[1]
         ];
 
-        $this->di->get("render")->display("Produkter under 500kr", "product/under500Female", $data);
+        return $this->di->get("render")->display("Produkter under 500kr", "product/under500Female", $data);
     }
 
 
@@ -113,10 +107,10 @@ class ProductController implements
      * @method getAllProductsUnder500Male()
      * @return mixed
      */
-    public function getAllProductsUnder500Male()
+    public function under500MaleAction()
     {
         $products = new Product();
-        $products->setDb($this->di->get("db"));
+        $products->setDb($this->di->get("dbqb"));
 
         $request = $this->di->get("request");
 
@@ -133,6 +127,6 @@ class ProductController implements
         ];
 
 
-        $this->di->get("render")->display("Produkter under 500kr", "product/under500Male", $data);
+        return $this->di->get("render")->display("Produkter under 500kr", "product/under500Male", $data);
     }
 }

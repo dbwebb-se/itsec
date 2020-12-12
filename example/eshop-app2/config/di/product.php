@@ -2,10 +2,10 @@
 
 return [
     "services" => [
-        "searchController" => [
+        "productController" => [
             "shared" => true,
             "callback" => function () {
-                $obj = new \Course\Search\SearchController();
+                $obj = new \Course\Product\ProductController();
                 $obj->setDI($this);
                 return $obj;
             }

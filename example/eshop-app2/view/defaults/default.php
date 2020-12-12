@@ -13,10 +13,10 @@ $req_uri = $_SERVER['REQUEST_URI'];
 
 if (strpos($req_uri, "?") !== false) {
     $pathClass = substr($req_uri, 0, strrpos($req_uri, '?'));
-    $pathClass = basename($path);
+    $pathClass = basename($pathClass);
 } elseif (is_numeric(basename($req_uri))) {
     $pathClass = substr($req_uri, 0, strrpos($req_uri, "/"));
-    $pathClass = basename($path);
+    $pathClass = basename($pathClass);
 } else {
     $pathClass = basename($req_uri);
 }

@@ -37,12 +37,11 @@ $loggedIn = $this->di->get("session")->has("email");
                         <h3>Pris:</h3>
                         <p class="font-weight-bold"><?= ($data[0]->productSellPrize); ?> kr</p>
                         <?php if ($data[0]->productAmount > 0) : ?>
-                            <?= $loggedIn === true ?
-                                    '<button type="button" onclick="addToCart(data);"
-                            class="btn btn-primary w-50">Lägg i kundvagn</button>'
-                                    : ' <button type="button" onclick="redirectToLogin();"
-                            class="btn btn-primary w-50">Logga in</button>'
-                                ?>
+                            <?= 
+                                $loggedIn === true 
+                                ? '<button type="button" onclick="addToCart(data);" class="btn btn-primary w-50">Lägg i kundvagn</button>'
+                                : ' <button type="button" onclick="redirectToLogin();" class="btn btn-primary w-50">Logga in</button>'
+                            ?>
                         <?php endif; ?>
                         <p id="addToCartComplete"></p>
                     </div>
