@@ -129,13 +129,13 @@ class AdminUpdateProductForm extends FormModel
                 "submit" => [
                     "type"     => "submit",
                     "value"    => "Updatera product",
-                    "class"    => "btn btn-lg btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100 my-2",
                     "callback" => [$this, "callbackSubmit"]
                 ],
                 "back" => [
                     "type"     => "submit",
                     "value"    => "Tillbaka till produkter",
-                    "class"    => "btn btn-lg btn-primary w-100",
+                    "class"    => "btn btn-lg btn-primary w-100 my-2",
                     "callback" => [$this, "back"],
                 ],
             ]

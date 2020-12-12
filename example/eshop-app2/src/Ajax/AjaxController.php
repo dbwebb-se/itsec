@@ -2,20 +2,15 @@
 
 namespace Course\Ajax;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
 use \Course\Product\Product;
 use \Course\Coupon\Coupon;
 
-class AjaxController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class AjaxController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -96,7 +91,7 @@ class AjaxController implements
         $data = $_POST["data"];
 
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
         $product->getProductByID($data);
         $product->setProductDeleted("true");
         $product->save();
@@ -194,7 +189,7 @@ class AjaxController implements
         $name = $this->di->get("request")->getPost("data");
 
         $coupon = new Coupon();
-        $coupon->setDb($this->di->get("db"));
+        $coupon->setDb($this->di->get("dbqb"));
 
         if ($coupon->validateCoupon($name) !== null &&
             $coupon->couponName === htmlentities($name)) {

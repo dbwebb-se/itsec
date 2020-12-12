@@ -81,7 +81,7 @@ $order = url("cart/order");
                         <div class="form-group">
                             <h4 class="text-center">Kupong</h4>
                             <div class="d-flex">
-                                <input name="coupon" type="text" class="form-control w-75-mobile mx-auto-mobile" id="coupon" placeholder="HELG">
+                                <input name="coupon" type="text" class="form-control w-75-mobile mx-auto-mobile m-2" id="coupon" placeholder="HELG">
                                 <i id="check" class="fas fa-check d-none text-success m-auto"></i>
                             </div>
                         </div>

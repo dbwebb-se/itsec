@@ -6,7 +6,7 @@ return [
     "routes" => [
         [
             "info" => "Home",
-            "mount" => "a",
+            "mount" => "",
             "handler"   => "\Course\Base\BaseController",
         ],
     ]

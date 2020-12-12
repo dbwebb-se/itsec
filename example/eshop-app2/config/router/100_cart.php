@@ -3,24 +3,25 @@
  * Category routes.
  */
 return [
+    "mount" => "cart",
     "routes" => [
-        [
-            "info" => "Kundvagn",
-            "requestMethod" => "GET",
-            "path" => "cart",
-            "callable" => ["cartController", "displayCart"]
-        ],
         [
             "info" => "Kassa",
             "requestMethod" => "GET",
-            "path" => "cart/checkout",
-            "callable" => ["cartController", "displayCheckout"]
+            "path" => "checkout",
+            "handler" => ["\Course\Cart\CartController", "displayCheckout"]
         ],
         [
             "info" => "Beställning lagd",
             "requestMethod" => "GET | POST",
-            "path" => "cart/order",
-            "callable" => ["cartController", "displayOrder"]
+            "path" => "order",
+            "handler" => ["\Course\Cart\CartController", "displayOrder"]
+        ],
+        [
+            "info" => "Kundvagn",
+            "requestMethod" => "GET",
+            "path" => "",
+            "handler" => ["\Course\Cart\CartController", "displayCart"]
         ],
     ]
 ];

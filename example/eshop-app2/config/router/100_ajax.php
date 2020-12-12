@@ -3,48 +3,49 @@
  * Default route to create a 404, use if no else route matched.
  */
 return [
+    "mount" => "ajax",
     "routes" => [
-        [
-            "info" => "Basket handler",
-            "requestMethod" => "POST",
-            "path" => "ajax",
-            "callable" => ["ajaxController", "addToCart"],
-        ],
         [
             "info" => "Ta bort från kundvagnen",
             "requestMethod" => "POST",
-            "path" => "ajax/remove",
-            "callable" => ["ajaxController", "removeFromCart"]
+            "path" => "remove",
+            "handler" => ["\Course\Ajax\AjaxController", "removeFromCart"]
         ],
         [
             "info" => "Ta bort allt från kundvagnen",
             "requestMethod" => "POST",
-            "path" => "ajax/removeall",
-            "callable" => ["ajaxController", "removeAllFromCart"]
+            "path" => "removeall",
+            "handler" => ["\Course\Ajax\AjaxController", "removeAllFromCart"]
         ],
         [
             "info" => "Ta bort produkt",
             "requestMethod" => "POST",
-            "path" => "ajax/removeProduct",
-            "callable" => ["ajaxController", "removeProduct"]
+            "path" => "removeProduct",
+            "handler" => ["\Course\Ajax\AjaxController", "removeProduct"]
         ],
         [
             "info" => "Uppdatera antal av en product",
             "requestMethod" => "POST",
-            "path" => "ajax/plusProduct",
-            "callable" => ["ajaxController", "plusProduct"]
+            "path" => "plusProduct",
+            "handler" => ["\Course\Ajax\AjaxController", "plusProduct"]
         ],
         [
             "info" => "Uppdatera antal av en product",
             "requestMethod" => "POST",
-            "path" => "ajax/minusProduct",
-            "callable" => ["ajaxController", "minusProduct"]
+            "path" => "minusProduct",
+            "handler" => ["\Course\Ajax\AjaxController", "minusProduct"]
         ],
         [
             "info" => "Validera en kupong",
             "requestMethod" => "POST",
-            "path" => "ajax/validateCoupon",
-            "callable" => ["ajaxController", "validateCoupon"]
+            "path" => "validateCoupon",
+            "handler" => ["\Course\Ajax\AjaxController", "validateCoupon"]
+        ],
+        [
+            "info" => "Basket handler",
+            "requestMethod" => "POST",
+            "path" => "",
+            "handler" => ["\Course\Ajax\AjaxController", "addToCart"],
         ],
     ]
 ];

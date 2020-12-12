@@ -2,10 +2,8 @@
 
 namespace Course\Cart;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
 use \Course\Order\OrderItem;
 use \Course\Order\Orders;
@@ -13,12 +11,9 @@ use \Course\Product\Product;
 use \Course\User\User;
 use \Course\Coupon\Coupon;
 
-class CartController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class CartController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-    InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -38,7 +33,7 @@ class CartController implements
             "price" => $this->di->get("calc")->calcPrice($items)
         ];
 
-        $this->di->get("render")->display("Kassa", "cart/cart", $data);
+        return $this->di->get("render")->display("Kassa", "cart/cart", $data);
     }
 
 
@@ -66,7 +61,7 @@ class CartController implements
             "amountOfItems" => $this->di->get("calc")->calcAmount($items),
         ];
 
-        $this->di->get("render")->display("Kassa", "cart/checkout", $data);
+        return $this->di->get("render")->display("Kassa", "cart/checkout", $data);
     }
 
 
@@ -77,7 +72,7 @@ class CartController implements
      * @return void
      */
     public function displayOrder() {
-        $db = $this->di->get("db");
+        $db = $this->di->get("dbqb");
 
         $session = $this->di->get("session");
 
@@ -140,7 +135,7 @@ class CartController implements
         $session->delete("items");
         $session->delete("orderID");
 
-        $this->di->get("render")->display("Beställning lagd", "cart/order", $data);
+        return $this->di->get("render")->display("Beställning lagd", "cart/order", $data);
     }
 
 

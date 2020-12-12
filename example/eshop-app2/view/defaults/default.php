@@ -75,7 +75,7 @@ $title = ($title ?? "No title") . ($baseTitle ?? " | No base title defined");
 
     <?php if (isset($javascripts)) : ?>
         <?php foreach ($javascripts as $javascript) : ?>
-            <script async src="<?= asset($javascript) ?>"></script>
+            <script src="<?= asset($javascript) ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 
