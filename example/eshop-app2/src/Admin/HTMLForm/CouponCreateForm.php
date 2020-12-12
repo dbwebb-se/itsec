@@ -4,7 +4,7 @@ namespace Course\Admin\HTMLForm;
 
 use \Anax\HTMLForm\FormModel;
 use \Course\Coupon\Coupon;
-use \Anax\DI\DIInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Example of FormModel implementation.
@@ -16,7 +16,7 @@ class CouponCreateForm extends FormModel
      *
      * @param \Anax\DI\DIInterface $di a service container
      */
-    public function __construct(DIInterface $di)
+    public function __construct(ContainerInterface $di)
     {
         parent::__construct($di);
         $this->form->create(
@@ -134,8 +134,7 @@ class CouponCreateForm extends FormModel
     {
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("admin");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 

@@ -4,8 +4,8 @@ namespace Course\Admin\HTMLForm;
 
 use \Anax\HTMLForm\FormModel;
 use \Course\Product\Product;
-use \Anax\DI\DIInterface;
 use Course\Category\Category;
+use Psr\Container\ContainerInterface;
 
 /**
  * Example of FormModel implementation.
@@ -21,16 +21,16 @@ class AdminUpdateProductForm extends FormModel
     private $productID;
 
 
-    public function __construct(DIInterface $di, $productID)
+    public function __construct(ContainerInterface $di, $productID)
     {
         parent::__construct($di);
 
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
         $product->getProductByID($productID);
 
         $category = new Category();
-        $category->setDb($this->di->get("db"));
+        $category->setDb($this->di->get("dbqb"));
         $categories = $category->getAllSubCategoriesGender($product->productGender);
 
         $currentCategory = $category->getSpecificCategory($product->productCategoryID);
@@ -153,7 +153,7 @@ class AdminUpdateProductForm extends FormModel
     {
         # Create new user and set databas.
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
 
         $productID = $this->productID;
 
@@ -185,8 +185,7 @@ class AdminUpdateProductForm extends FormModel
 
         // #Create url and redirect to login.
         $url = $this->di->get("url")->create("admin/products");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -225,8 +224,7 @@ class AdminUpdateProductForm extends FormModel
     {
         #Create url and redirect to user profile.
         $url = $this->di->get("url")->create("admin/products");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 

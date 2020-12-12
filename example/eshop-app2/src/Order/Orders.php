@@ -2,7 +2,7 @@
 
 namespace Course\Order;
 
-use \Anax\Database\ActiveRecordModel;
+use \Anax\DatabaseActiveRecord\ActiveRecordModel2 as ActiveRecordModel;
 
 class Orders extends ActiveRecordModel {
     /**

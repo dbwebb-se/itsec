@@ -1,12 +1,12 @@
 <?php
 namespace Course\Calc;
 
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 
-class Calc implements InjectionAwareInterface
+class Calc implements ContainerInjectableInterface
 {
-    use InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
     /**

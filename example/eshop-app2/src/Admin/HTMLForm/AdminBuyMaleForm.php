@@ -4,7 +4,7 @@ namespace Course\Admin\HTMLForm;
 
 use \Anax\HTMLForm\FormModel;
 use \Course\Product\Product;
-use \Anax\DI\DIInterface;
+use Psr\Container\ContainerInterface;
 
 use \Course\Category\Category;
 
@@ -18,13 +18,13 @@ class AdminBuyMaleForm extends FormModel
      *
      * @param \Anax\DI\DIInterface $di a service container
      */
-    public function __construct(DIInterface $di)
+    public function __construct(ContainerInterface $di)
     {
         parent::__construct($di);
 
 
         $category = new Category();
-        $category->setDb($this->di->get("db"));
+        $category->setDb($this->di->get("dbqb"));
         $categories = $category->getAllSubCategoriesGender(1);
 
         $categoryArr = [];
@@ -132,7 +132,7 @@ class AdminBuyMaleForm extends FormModel
         }
 
         $product = new Product();
-        $product->setDb($this->di->get("db"));
+        $product->setDb($this->di->get("dbqb"));
 
         $product->setProductManufacturer($arrayOfData["productManufacturer"]);
         $product->setProductName($arrayOfData["productName"]);
@@ -150,8 +150,7 @@ class AdminBuyMaleForm extends FormModel
         //
         // #Create url and redirect to login.
         $url = $this->di->get("url")->create("admin/products");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -190,8 +189,7 @@ class AdminBuyMaleForm extends FormModel
     {
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("admin");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 

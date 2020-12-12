@@ -1,7 +1,7 @@
 <?php
 namespace Course\Coupon;
 
-use \Anax\Database\ActiveRecordModel;
+use \Anax\DatabaseActiveRecord\ActiveRecordModel2 as ActiveRecordModel;
 
 class Coupon extends ActiveRecordModel
 {

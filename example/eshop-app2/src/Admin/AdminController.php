@@ -25,10 +25,10 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin settings.
      */
-    public function displaySettingsAdmin()
+    public function indexAction()
     {
-        $this->checkIfAdmin();
-        $this->di->get("render")->display("Admin", "admin/admin");
+        // $this->checkIfAdmin();
+        return $this->di->get("render")->display("Admin", "admin/admin");
     }
 
 
@@ -36,26 +36,31 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin products.
      */
-    public function indexAction()
+    public function productsAction()
     {
         // $this->checkIfAdmin();
 
         $request = $this->di->get("request");
-        $page = $this->di->get("page");
 
         $amountPerPage = 50;
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
 
-        $res = $this->di->get("pagination")->pagination([],
-            "getAllProducts", "getAllProducts", [$offset], "admin", "/products?page=1");
+        $res = $this->di->get("pagination")->pagination(
+            [],
+            "getAllProducts",
+            "getAllProducts",
+            [$offset],
+            "admin",
+            "/products?page=1"
+        );
 
         $data = [
             "products" => $res[0],
             "amountOfProducts" => $res[1]
         ];
 
-        $this->di->get("render")->display("Admin | Produkter", "admin/products", $data);
+        return $this->di->get("render")->display("Admin | Produkter", "admin/products", $data);
     }
 
 
@@ -63,17 +68,17 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin users.
      */
-    public function displayUsersAdmin()
+    public function usersAction()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $user = new User();
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
 
         $data = [
             "users" => $user->getAllUsers()
         ];
 
-        $this->di->get("render")->display("Admin | Användare", "admin/users", $data);
+        return $this->di->get("render")->display("Admin | Användare", "admin/users", $data);
     }
 
 
@@ -81,9 +86,9 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render products with low amount.
      */
-    public function displayLowAdmin()
+    public function lowAction()
     {
-        $this->checkIfAdmin();
+        // $this->checkIfAdmin();
 
         $request = $this->di->get("request");
 
@@ -91,15 +96,21 @@ class AdminController implements ContainerInjectableInterface
         $calcOffset = $request->getGet(htmlentities("page")) * $amountPerPage;
         $offset = $request->getGet(htmlentities("page")) == 1 ? 0 : $calcOffset;
 
-        $res = $this->di->get("pagination")->pagination([],
-            "getProductsWithLowAmount", "getProductsWithLowAmount", [$offset], "admin", "/low?page=1");
+        $res = $this->di->get("pagination")->pagination(
+            [],
+            "getProductsWithLowAmount",
+            "getProductsWithLowAmount",
+            [$offset],
+            "admin",
+            "/low?page=1"
+        );
 
         $data = [
             "products" => $res[0],
             "amountOfProducts" => $res[1]
         ];
 
-        $this->di->get("render")->display("Admin | Lågt antal", "admin/low", $data);
+        return $this->di->get("render")->display("Admin | Lågt antal", "admin/low", $data);
     }
 
 
@@ -107,17 +118,17 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin orders.
      */
-    public function displayOrdersAdmin()
+    public function ordersAction()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $order = new Orders();
-        $order->setDb($this->di->get("db"));
+        $order->setDb($this->di->get("dbqb"));
 
         $data = [
             "orders" => $order->getAllOrders(),
         ];
 
-        $this->di->get("render")->display("Admin | Ordrar", "admin/orders", $data);
+        return $this->di->get("render")->display("Admin | Ordrar", "admin/orders", $data);
     }
 
 
@@ -125,26 +136,26 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin single order.
      */
-    public function displatSingleOrderAdmin($orderID)
+    public function orderActionGet($orderID)
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $order = new Orders();
-        $order->setDb($this->di->get("db"));
+        $order->setDb($this->di->get("dbqb"));
         $orders = $order->getAllOrders();
 
         $orderNumbers = $this->getOrderNumbers($orders);
 
         if (in_array($orderID, $orderNumbers)) {
             $product = new Product();
-            $product->setDb($this->di->get("db"));
+            $product->setDb($this->di->get("dbqb"));
 
             $orderItem = new OrderItem();
-            $orderItem->setDb($this->di->get("db"));
+            $orderItem->setDb($this->di->get("dbqb"));
 
             $getOrder = $order->getOrderByID($orderID);
 
             $user = new User();
-            $user->setDb($this->di->get("db"));
+            $user->setDb($this->di->get("dbqb"));
             $userInfo = $user->getUserInformationById($getOrder->userID);
 
             $items = $orderItem->getAllItemsWhereID($orderID);
@@ -156,12 +167,12 @@ class AdminController implements ContainerInjectableInterface
                 $res = array_merge_recursive((array) $productItem, (array) $value);
                 $products[] = $res;
             }
-            
+
             $coupon = null;
 
             if ($order->couponID !== null) {
                 $coupon = new Coupon();
-                $coupon->setDb($this->di->get("db"));
+                $coupon->setDb($this->di->get("dbqb"));
                 $coupon->getCoupon($order->couponID);
             }
 
@@ -177,14 +188,11 @@ class AdminController implements ContainerInjectableInterface
                 "amountOfItems" => $this->di->get("calc")->calcAmount($products, "productAmount"),
             ];
 
-            $this->di->get("render")->display("Admin | Order", "admin/order", $data);
+            return $this->di->get("render")->display("Admin | Order", "admin/order", $data);
         }
 
-        $url = $this->di->get("url");
-        $response = $this->di->get("response");
-        $login = $url->create("admin/orders");
-        $response->redirect($login);
-        return false;
+        $url = $this->di->get("url")->create("admin/orders");
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -192,9 +200,9 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin buy product female.
      */
-    public function displayBuyFemaleAdmin()
+    public function buyFemaleAction()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $buyForm = new AdminBuyFemaleForm($this->di);
 
         $buyForm->check();
@@ -203,7 +211,7 @@ class AdminController implements ContainerInjectableInterface
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
+        return $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 
@@ -211,9 +219,9 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin buy product male.
      */
-    public function displayBuyMaleAdmin()
+    public function buyMaleAction()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $buyForm = new AdminBuyMaleForm($this->di);
 
         $buyForm->check();
@@ -222,7 +230,7 @@ class AdminController implements ContainerInjectableInterface
             "content" => $buyForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
+        return $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 
@@ -230,9 +238,9 @@ class AdminController implements ContainerInjectableInterface
     /**
      * Render admin edit product.
      */
-    public function displayEditAdmin($productID)
+    public function editAction($productID)
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $updateForm = new AdminUpdateProductForm($this->di, $productID);
 
         $updateForm->check();
@@ -241,8 +249,7 @@ class AdminController implements ContainerInjectableInterface
             "content" => $updateForm->getHTML(),
         ];
 
-
-        $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
+        return $this->di->get("render")->display("Admin | Köp Product", "default1/article", $data);
     }
 
 
@@ -251,9 +258,9 @@ class AdminController implements ContainerInjectableInterface
      *
      * @return void
      */
-    public function displayAddCoupon()
+    public function couponAction()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $form = new CouponCreateForm($this->di);
 
         $form->check();
@@ -262,8 +269,7 @@ class AdminController implements ContainerInjectableInterface
             "content" => $form->getHTML(),
         ];
 
-
-        $this->di->get("render")->display("Admin | Lägg till kupong", "default1/article", $data);
+        return $this->di->get("render")->display("Admin | Lägg till kupong", "default1/article", $data);
     }
 
 
@@ -278,7 +284,7 @@ class AdminController implements ContainerInjectableInterface
         $url = $this->di->get("url");
         $response = $this->di->get("response");
         $session = $this->di->get("session");
-        $db = $this->di->get("db");
+        $db = $this->di->get("dbqb");
         $login = $url->create("user/login");
 
         $user = new User();
