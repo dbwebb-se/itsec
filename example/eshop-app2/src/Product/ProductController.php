@@ -20,7 +20,7 @@ class ProductController implements ContainerInjectableInterface
      * @param  int $productId ID of product.
      * @return mixed
      */
-    public function idActionGet($productId)
+    public function getSpecificProduct($productId)
     {
         $product = new Product();
         $product->setDb($this->di->get("dbqb"));
@@ -47,7 +47,7 @@ class ProductController implements ContainerInjectableInterface
     public function getAllProductsFromCategory($categoryID, $genderID)
     {
         $category = new Category();
-        $category->setDb($this->di->get("db"));
+        $category->setDb($this->di->get("dbqb"));
         $productCategory = $category->getSpecificCategory($categoryID);
 
         $request = $this->di->get("request");
@@ -68,7 +68,7 @@ class ProductController implements ContainerInjectableInterface
             "categoryParent" => $productCategory,
         ];
 
-        $this->di->get("render")->display("Produkter", "product/products", $data);
+        return $this->di->get("render")->display("Produkter", "product/products", $data);
     }
 
 

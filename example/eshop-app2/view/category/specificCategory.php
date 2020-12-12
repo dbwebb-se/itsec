@@ -5,7 +5,7 @@ $numOfCols = 3;
 $rowCount = 0;
 $bootstrapColWidth = 12 / $numOfCols;
 
-$productUrl = url("products");
+$productUrl = url("product");
 $gender = $data["title"][0]->gender == 0 ? 'Dam' : 'Herr';
 $backUrl = url("category");
 ?>

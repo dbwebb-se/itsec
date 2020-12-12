@@ -3,24 +3,25 @@
  * Category routes.
  */
 return [
+    "mount" => "category",
     "routes" => [
         [
-            "info" => "All Category",
-            "requestMethod" => "GET",
-            "mount" => "category",
-            "handler" => "\Course\Category\CategoryController"
+            "info" => "Specific category",
+            "method" => "GET",
+            "path" => "{id:digit}",
+            "handler" => ["\Course\Category\CategoryController", "getSpecificCategory"]
         ],
-        // [
-        //     "info" => "Specific category",
-        //     "requestMethod" => "GET",
-        //     "mount" => "category/{id:digit}",
-        //     "handler" => "\Course\Category\CategoryController"
-        // ],
         // [
         //     "info" => "Specific subcategory",
         //     "requestMethod" => "GET",
-        //     "mount" => "category/{id:digit}/{id:digit}/{gender:digit}",
-        //     "handler" => "\Course\Category\CategoryController"
-        // ]
+        //     "path" => "category/{id:digit}/{id:digit}/{gender:digit}",
+        //     "handler" => ["\Course\Category\CategoryController", "getSpecificCategory"]
+        // ],
+        [
+            "info" => "All Category",
+            "method" => "GET",
+            "path" => "",
+            "handler" => "\Course\Category\CategoryController"
+        ],
     ]
 ];

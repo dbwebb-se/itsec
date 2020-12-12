@@ -35,7 +35,7 @@ class CategoryController implements ContainerInjectableInterface
      * @param integer $parentID ID to parent category
      *
      */
-    public function argumentActionGet($parentID)
+    public function getSpecificCategory($parentID)
     {
         $category = new Category();
         $category->setDb($this->di->get("dbqb"));
@@ -44,9 +44,8 @@ class CategoryController implements ContainerInjectableInterface
         $categories = $category->getAllSubCategories($parentID);
 
         if (empty($title) || empty($categories)) {
-            $redirect = $this->di->get("url")->create("");
-            $this->di->get("response")->redirect($redirect);
-            return false;
+            $redirect = $this->di->get("url")->create("category");
+            return $this->di->get("response")->redirect($redirect);
         }
 
         $data = [

@@ -3,29 +3,27 @@
  * Category routes.
  */
 return [
+    "mount" => "product",
     "routes" => [
         [
             "info" => "Specific product",
-            "mount" => "products",
-            "handler" => "\Course\Product\ProductController"
+            "path" => "{id:digit}",
+            "handler" => ["\Course\Product\ProductController", "getSpecificProduct"]
         ],
-        // [
-        //     "info" => "Products",
-        //     "requestMethod" => "GET",
-        //     "path" => "products/{id:digit}/{gender:digit}",
-        //     "callable" => ["productController", "getAllProductsFromCategory"]
-        // ],
-        // [
-        //     "info" => "Under 500kr",
-        //     "requestMethod" => "GET",
-        //     "path" => "products",
-        //     "handler" => "\Course\Product\ProductController"
-        // ],
-        // [
-        //     "info" => "Under 500kr",
-        //     "requestMethod" => "GET",
-        //     "path" => "products/under500Male",
-        //     "callable" => ["productController", "getAllProductsUnder500Male"]
-        // ]
+        [
+            "info" => "Products",
+            "path" => "{id:digit}/{gender:digit}",
+            "handler" => ["\Course\Product\ProductController", "getAllProductsFromCategory"]
+        ],
+        [
+            "info" => "Under 500kr",
+            "path" => "under500Female",
+            "handler" => ["\Course\Product\ProductController", "under500FemaleAction"]
+        ],
+        [
+            "info" => "Under 500kr",
+            "path" => "under500Male",
+            "handler" => ["\Course\Product\ProductController", "under500MaleAction"]
+        ]
     ]
 ];
