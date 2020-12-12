@@ -244,16 +244,12 @@ class User extends ActiveRecordModel
     {
         $res = $this->find("userMail", $email);
 
-        /* Check if user exists, does not work as it always returns an instance of User */
-        var_dump($email);
-        var_dump($res);
-        die;
-
-        if ($res instanceof User) {
-            return true;
+        /* Check if user exists by checking if PK is null or not */
+        if (!$res->userID) {
+            return false;
         }
-
-        return false;
+        
+        return true;
     }
 
 
