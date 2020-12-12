@@ -3,24 +3,22 @@
  * Default route to create a 404, use if no else route matched.
  */
 return [
+    "mount" => "management",
     "routes" => [
         [
-            "info" => "Management",
-            "requestMethod" => "GET",
-            "path" => "management",
-            "callable" => ["managementController", "displaySettingsManagement"],
-        ],
-        [
             "info" => "Management Most Bought Product",
-            "requestMethod" => "GET",
-            "path" => "management/mostbought",
-            "callable" => ["managementController", "displaySettingsMostBought"],
+            "path" => "mostbought",
+            "handler" => ["\Course\Management\ManagementController", "displaySettingsMostBought"],
         ],
         [
             "info" => "Management Best Selling Product 1 Month",
-            "requestMethod" => "GET",
-            "path" => "management/bestselling",
-            "callable" => ["managementController", "displaySettingsBestSelling"],
+            "path" => "bestselling",
+            "handler" => ["\Course\Management\ManagementController", "displaySettingsBestSelling"],
+        ],
+        [
+            "info" => "Management",
+            "path" => "",
+            "handler" => ["\Course\Management\ManagementController", "displaySettingsManagement"],
         ],
     ]
 ];

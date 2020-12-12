@@ -1,7 +1,7 @@
 <?php
 namespace Course\Management;
 
-use \Anax\Database\ActiveRecordModel;
+use \Anax\DatabaseActiveRecord\ActiveRecordModel2 as ActiveRecordModel;
 use \Course\Order\OrderItem;
 use \Course\Order\Orders;
 use \Course\Product\Product;
