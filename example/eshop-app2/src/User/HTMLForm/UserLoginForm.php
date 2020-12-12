@@ -3,8 +3,8 @@
 namespace Course\User\HTMLForm;
 
 use \Anax\HTMLForm\FormModel;
-use \Anax\DI\DIInterface;
 use \Course\User\User;
+use Psr\Container\ContainerInterface;
 
 /**
  * Example of FormModel implementation.
@@ -16,7 +16,7 @@ class UserLoginForm extends FormModel
      *
      * @param \Anax\DI\DIInterface $di a service container
      */
-    public function __construct(DIInterface $di)
+    public function __construct(ContainerInterface $di)
     {
         parent::__construct($di);
 
@@ -73,7 +73,7 @@ class UserLoginForm extends FormModel
         #Create a new user.
         $user = new User();
         #Give user access to database.
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
 
         #Check if the password match for the specific email.
         $passwordValidation = $user->verifyPassword($email, $password);
@@ -89,8 +89,7 @@ class UserLoginForm extends FormModel
 
         #Create url and redirect to profile.
         $url = $this->di->get("url")->create("user/profile");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -104,6 +103,6 @@ class UserLoginForm extends FormModel
     {
         #Create url and redirect to create.
         $url = $this->di->get("url")->create("user/create");
-        $this->di->get("response")->redirect($url);
+        return $this->di->get("response")->redirect($url);
     }
 }

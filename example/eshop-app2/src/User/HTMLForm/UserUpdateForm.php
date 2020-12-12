@@ -4,7 +4,7 @@ namespace Course\User\HTMLForm;
 
 use \Anax\HTMLForm\FormModel;
 use \Course\User\User;
-use \Anax\DI\DIInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Example of FormModel implementation.
@@ -16,14 +16,14 @@ class UserUpdateForm extends FormModel
      *
      * @param \Anax\DI\DIInterface $di a service container
      */
-    public function __construct(DIInterface $di)
+    public function __construct(ContainerInterface $di)
     {
         parent::__construct($di);
 
         $session = $this->di->get("session");
 
         $currentUser = new User();
-        $currentUser->setDb($this->di->get("db"));
+        $currentUser->setDb($this->di->get("dbqb"));
         $currentUser->getUserInformationByEmail($session->get("email"));
 
         $gender = $currentUser->userGender === 1 ? "Man" : "Kvinna";
@@ -135,7 +135,7 @@ class UserUpdateForm extends FormModel
     {
         # Create new user and set databas.
         $user = new User();
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
         $session = $this->di->get("session");
         $user->getUserInformationByEmail($session->get("email"));
 
@@ -175,8 +175,7 @@ class UserUpdateForm extends FormModel
 
         #Create url and redirect to login.
         $url = $this->di->get("url")->create("user/profile");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 
@@ -214,8 +213,7 @@ class UserUpdateForm extends FormModel
     {
         #Create url and redirect to user profile.
         $url = $this->di->get("url")->create("user/profile");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 

@@ -2,7 +2,7 @@
 namespace Anax\View;
 
 $logout = url("user/logout");
-$edit = url("user/profile/edit");
+$edit = url("user/edit");
 $orders = url("orders");
 
 $address = $data["content"]->userAddress . " " . $data["content"]->userPostcode . " " . $data["content"]->userCity;

@@ -27,7 +27,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function indexAction()
     {
-        // $this->checkIfAdmin();
+        $this->checkIfAdmin();
         return $this->di->get("render")->display("Admin", "admin/admin");
     }
 
@@ -38,7 +38,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function productsAction()
     {
-        // $this->checkIfAdmin();
+        $this->checkIfAdmin();
 
         $request = $this->di->get("request");
 
@@ -70,7 +70,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function usersAction()
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
 
@@ -88,7 +88,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function lowAction()
     {
-        // $this->checkIfAdmin();
+        $this->checkIfAdmin();
 
         $request = $this->di->get("request");
 
@@ -120,7 +120,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function ordersAction()
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $order = new Orders();
         $order->setDb($this->di->get("dbqb"));
 
@@ -138,7 +138,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function orderActionGet($orderID)
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $order = new Orders();
         $order->setDb($this->di->get("dbqb"));
         $orders = $order->getAllOrders();
@@ -202,7 +202,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function buyFemaleAction()
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $buyForm = new AdminBuyFemaleForm($this->di);
 
         $buyForm->check();
@@ -221,7 +221,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function buyMaleAction()
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $buyForm = new AdminBuyMaleForm($this->di);
 
         $buyForm->check();
@@ -240,7 +240,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function editAction($productID)
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $updateForm = new AdminUpdateProductForm($this->di, $productID);
 
         $updateForm->check();
@@ -260,7 +260,7 @@ class AdminController implements ContainerInjectableInterface
      */
     public function couponAction()
     {
-        //$this->checkIfAdmin();
+        $this->checkIfAdmin();
         $form = new CouponCreateForm($this->di);
 
         $form->check();

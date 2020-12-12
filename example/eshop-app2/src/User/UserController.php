@@ -2,10 +2,8 @@
 
 namespace Course\User;
 
-use \Anax\Configure\ConfigureInterface;
-use \Anax\Configure\ConfigureTrait;
-use \Anax\DI\InjectionAwareInterface;
-use \Anax\DI\InjectionAwareTrait;
+use Anax\Commons\ContainerInjectableInterface;
+use Anax\Commons\ContainerInjectableTrait;
 use \Course\User\HTMLForm\UserLoginForm;
 use \Course\User\HTMLForm\UserCreateForm;
 use \Course\User\HTMLForm\UserUpdateForm;
@@ -15,12 +13,9 @@ use \Course\User\HTMLForm\UserUpdateForm;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class UserController implements
-    ConfigureInterface,
-    InjectionAwareInterface
+class UserController implements ContainerInjectableInterface
 {
-    use ConfigureTrait,
-        InjectionAwareTrait;
+    use ContainerInjectableTrait;
 
 
 
@@ -29,16 +24,13 @@ class UserController implements
      * @method getLoginPage()
      * @return mixed
      */
-    public function getLoginPage()
+    public function loginAction()
     {
-        $url = $this->di->get("url");
-        $response = $this->di->get("response");
-        $session = $this->di->get("session");
-        if ($session->has("email")) {
-            $url = $url->create("user/profile");
-            $response->redirect($url);
-            return false;
+        if ($this->di->get("session")->has("email")) {
+            $url = $this->di->get("url")->create("user/profile");
+            return $this->di->get("response")->redirect($url);
         }
+
         $loginForm = new UserLoginForm($this->di);
 
         $loginForm->check();
@@ -47,7 +39,7 @@ class UserController implements
             "content" => $loginForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Inloggning", "default1/article", $data);
+        return $this->di->get("render")->display("Inloggning", "default1/article", $data);
     }
 
 
@@ -57,7 +49,7 @@ class UserController implements
      * @method getCreatePage()
      * @return void
      */
-    public function getCreatePage()
+    public function createAction()
     {
         $createForm = new UserCreateForm($this->di);
 
@@ -67,7 +59,7 @@ class UserController implements
             "content" => $createForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Skapa ny användare", "default1/article", $data);
+       return $this->di->get("render")->display("Skapa ny användare", "default1/article", $data);
     }
 
 
@@ -77,7 +69,7 @@ class UserController implements
      * @method updateProfile()
      * @return void
      */
-    public function updateProfile()
+    public function editAction()
     {
         $updateForm = new UserUpdateForm($this->di);
 
@@ -87,7 +79,7 @@ class UserController implements
             "content" => $updateForm->getHTML(),
         ];
 
-        $this->di->get("render")->display("Uppdatera profil", "default1/article", $data);
+        return $this->di->get("render")->display("Uppdatera profil", "default1/article", $data);
     }
 
 
@@ -97,22 +89,22 @@ class UserController implements
      * @method getProfilePage()
      * @return void
      */
-    public function getProfilePage()
+    public function profileAction()
     {
         $this->checkLoggedIn();
 
         # Creating new user and set database.
         $user = new User();
-        $user->setDb($this->di->get("db"));
+        $user->setDb($this->di->get("dbqb"));
 
-        #Get current session.
+        # Get current session.
         $session = $this->di->get("session");
 
         $data = [
             "content" => $user->getUserInformationByEmail($session->get("email")),
         ];
 
-        $this->di->get("render")->display("Profile", "user/profile", $data);
+        return $this->di->get("render")->display("Profile", "user/profile", $data);
     }
 
 
@@ -122,27 +114,17 @@ class UserController implements
      * @method logout()
      * @return mixed
      */
-    public function logout()
+    public function logoutAction()
     {
-        $url = $this->di->get("url");
-        $response = $this->di->get("response");
         $session = $this->di->get("session");
-        $login = $url->create("user/login");
 
-        if (!$session->has("email")) {
-            $response->redirect($login);
+        if ($session->has("email")) {
+            $session->delete("email");
+            $session->delete("items");
         }
 
-        $session->delete("email");
-        $session->delete("items");
-        $response->redirect($login);
-
-        $hasSession = session_status() == PHP_SESSION_ACTIVE;
-
-        if (!$hasSession) {
-            $response->redirect($login);
-            return true;
-        }
+        $url = $this->di->get("url")->create("user/login");
+        return $this->di->get("response")->redirect($url);
     }
 
 
