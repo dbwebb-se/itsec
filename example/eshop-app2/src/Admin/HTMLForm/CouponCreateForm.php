@@ -85,9 +85,9 @@ class CouponCreateForm extends FormModel
 
         #Create new Coupon and set databas.
         $coupon = new Coupon();
-        $coupon->setDb($this->di->get("db"));
+        $coupon->setDb($this->di->get("dbqb"));
 
-        if ($coupon->getCouponByName($arrayOfData["name"]) != null) {
+        if ($coupon->getCouponByName($arrayOfData["name"])->couponID != null) {
             $this->form->addOutput("Coupon already exists.");
             return false;
         }
@@ -100,8 +100,7 @@ class CouponCreateForm extends FormModel
 
         #Create url and redirect to admin.
         $url = $this->di->get("url")->create("admin");
-        $this->di->get("response")->redirect($url);
-        return true;
+        return $this->di->get("response")->redirect($url);
     }
 
 

@@ -258,9 +258,9 @@ class AdminController implements ContainerInjectableInterface
      *
      * @return void
      */
-    public function couponAction()
+    public function displayAddCoupon()
     {
-        $this->checkIfAdmin();
+        //$this->checkIfAdmin();
         $form = new CouponCreateForm($this->di);
 
         $form->check();

@@ -3,17 +3,18 @@
  * Default route to create a 404, use if no else route matched.
  */
 return [
+    "mount" => "admin",
     "routes" => [
         [
-            "info" => "Admin",
-            "mount" => "admin",
-            "handler" => "\Course\Admin\AdminController",
+            "info" => "Admin Lägg till kupong",
+            // "method" => "GET|POST",
+            "path" => "coupon/add",
+            "handler" => ["\Course\Admin\AdminController", "displayAddCoupon"],
         ],
-        // [
-        //     "info" => "Admin Lägg till kupong",
-        //     "requestMethod" => "GET|POST",
-        //     "mount" => "admin/coupon/add",
-        //     "handler" => ["adminController", "displayAddCoupon"],
-        // ]
+        [
+            "info" => "Admin",
+            "mount" => "",
+            "handler" => "\Course\Admin\AdminController",
+        ]
     ]
 ];
