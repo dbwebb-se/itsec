@@ -1,4 +1,4 @@
-<%- include ('../partials/header') %>
+<%- include('../partials/header') %>
 <div class="main">
     <% if (session.flash) { %>
         <div class="flash">
@@ -17,13 +17,13 @@
             </select>
 
             <% if (session.manage_user) { %>
-                <%- include ('../partials/user-table') %>
+                <%- include('../partials/user-table') %>
             <% } %>
         <% } else { %>
-            <%- include ('../partials/user-table') %>
+            <%- include('../partials/user-table') %>
         <% } %>
     <% } else { %>
         <div class="flash">You are not logged in.</div>
     <% } %>
 </div>
-<%- include ('../partials/footer') %>
+<%- include('../partials/footer') %>
