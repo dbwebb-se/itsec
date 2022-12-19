@@ -1,7 +1,7 @@
 
 [0;30;42m>>> ======= GUI Inspect               =======[0m
-Fri Dec 16 01:46:09 CET 2022
-itsec kmom05 rilr20
+Mon Dec 19 07:42:59 CET 2022
+itsec kmom05 erru17
 download, docker
 Inspect GUI v2.10.2 (2022-04-21)
 
@@ -15,11 +15,9 @@ Inspect GUI v2.10.2 (2022-04-21)
 [0;30;42m>>> ======= OPENING FILES IN VSCODE   =======[0m
 
 [0;30;42m>>> ======= Docker run scripts        =======[0m
-docker-compose -f docker-compose.yaml run --rm --service-ports server bash .dbwebb/inspect-src/kmom.d/run.bash kmom05 rilr20 .log/inspect/docker.txt
+docker-compose -f docker-compose.yaml run --rm --service-ports server bash .dbwebb/inspect-src/kmom.d/run.bash kmom05 erru17 .log/inspect/docker.txt
 Creating itsec_server_run ... 
 Creating itsec_server_run ... done
-
-
 
 [32;01m>>> -------------- Start                                    -------------------------[0m
 Running scripts in '/home/dbwebb/repo/.dbwebb/inspect-src/kmom.d/kmom05'.
@@ -28,13 +26,13 @@ Running scripts in '/home/dbwebb/repo/.dbwebb/inspect-src/kmom.d/kmom05'.
 [0;37;41mFAILED[0m  10_eslint.bash
 
 [32;01m>>> -------------- bank                                     -------------------------[0m
-Done? [0;30;42mOK[0m
+Done? 
+[0;30;42mOK[0m
 
 [32;01m>>> -------------- lastcheck                                -------------------------[0m
 Do manual stuff, if needed (write e/exit to exit)?
 kmom01	kmom02	kmom03	kmom04	kmom05	kmom06	kmom10	redovisa
-[?2004h]0;dbwebb@3e91d06e625f: ~/repo/medbwebb@3e91d06e625f:~/repo/me$ 
-[?2004l[?2004h]0;dbwebb@3e91d06e625f: ~/repo/medbwebb@3e91d06e625f:~/repo/me$ exit
+[?2004h]0;dbwebb@493b3166692e: ~/repo/medbwebb@493b3166692e:~/repo/me$ ex 
 [?2004lexit
 [0;30;42mOK[0m
 

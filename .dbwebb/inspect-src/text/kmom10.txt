@@ -1,3 +1,18 @@
+Hej!
+
+Då var itseckursen avklarad! Grattis!
+
+Enligt kursplanen har du nu kunskap att:
+•	ingående redogöra för informationssäkerhet med webbtillämpningar baserat på de tekniker som omfattas genom att beskriva och sammanfatta erfarenheter och observationer från övningar och projekt.
+•	kunna visa goda kunskaper i att använda relevanta tekniker och metoder genom att tillämpa dessa tekniker i praktiska övningar och projekt.
+•	självständigt kunna bedöma, dokumentera och presentera relevanta säkerhetsrelaterade riskområden för en webbaserad applikation.
+•	ha god praktisk förmåga att hantera verktyg och miljöer som används vid testning och undersökning rörande säkerhetsrelaterade attacker.
+•	via redovisningarna kunna visa god förmåga att reflektera och argumentera över säkerhet, risker, sårbarhet och attacker mot webbaserade applikationer. 
+
+Du har hittat många fel och har åtgärdat dem på ett bra sätt. Sårbarhetsanalysen är bra och informativ. Videon var förklarande och bra!
+
+Du har även gjort de optionella kraven om logging och privacy på ett bra sätt. 
+
 Jag har tittat på din sista inlämning och betygsatt enligt:
 https://dbwebb.se/kurser/faq/bedomning-och-betygsattning
 
@@ -12,5 +27,7 @@ Redovisa extra:    0 (10p)
 ---------------------------------
 TOTALT:           60 poäng (100p)
 SLUTBETYG:        D        (A-F, Fx)
+
+Bra jobbat! 
 
 $TEACHER_SIGNATURE

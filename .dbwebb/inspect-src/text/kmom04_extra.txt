@@ -1,1 +1,0 @@
-FIX. Din redovisningstext är alltför kort. Uppdatera den så att den matchar det som önskas.

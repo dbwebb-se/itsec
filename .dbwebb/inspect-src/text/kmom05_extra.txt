@@ -1,0 +1,6 @@
+Saknar uppdateringen av kapitel 3, System Description. Beskriv appen i ord och 
+bild.
+
+Det behövs några tester till.
+
+Din bank-app funkar inte längre som tänkt.
