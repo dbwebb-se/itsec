@@ -1,0 +1,13 @@
+Låt se hur kmom04 föll ut.
+
+Jag läser igenom din redovisningstext för att se hur du upplevde kursmomentet.
+
+Jag tittar på din 'photocal.php' för att se att den fungerar med föregåenden och nästa månad och övriga krav.
+
+Jag tittar på din 'guessname.php' och försöker gissa namnet och kollar att du implementerat flashmeddelandet på rätt sätt.
+
+Som vanligt tittar om din sida/sidor validerar i Unicorn.
+
+$TEACHER_SIGNATURE
+
+Status från rättningsverktyget:

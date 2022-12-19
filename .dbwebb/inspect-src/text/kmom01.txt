@@ -1,0 +1,28 @@
+Välkommen till kursen webtec!
+
+Här är kort återkoppling på de saker jag tittat på i din inlämning samt lite info om hur vi normalt går tillväga när vi tittar på en inlämning.
+
+Jag börjar alltid att köra igenom 'dbwebb test kmom01' för att se att alla dina filer ligger på rätt plats.
+
+Jag öppnar din rapportsida och kollar det "allmänna läget" för att få en uppfattning om hur långt du kom i kmom01.
+
+Jag tittar också så att din inlämning uppfyller de krav som finns i uppgiften.
+
+Jag läser igenom din rapportsida med redovisningstext och där vill jag se att du besvarat frågorna med någorlunda fylliga och gärna reflekterande svar.
+
+Jag testar någon, eller några, av dina sidor så att de validerar i Unicorn/HTML/CSS validatorerna.
+
+Om jag inte explicit påtalar att du behöver FIXA något så betyder det att du är på rätt väg och kan jobba vidare!
+
+$TEACHER_SIGNATURE
+
+PS. Vilken feedback kan man förvänta sig på rättningarna?
+https://dbwebb.se/kurser/faq/vilken-feedback-far-man-pa-inlamningarna
+
+PS. Hur skriver man reflekterande redovisningstext och besvarar frågor?
+https://dbwebb.se/kunskap/varfor-regnar-det-pa-bergssidan-ett-exempel-pa-solo-taxonomin
+
+PS. Glöm inte att fråga i GitHub issues för mer utförliga svar på funderingar eller för feedback på kod och lösningar.
+https://github.com/dbwebb-se/webtec/issues
+
+Status från rättningsverktyget:

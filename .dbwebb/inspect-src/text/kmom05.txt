@@ -1,0 +1,13 @@
+Då tittar vi på kmom05 med sökmotorn.
+
+Jag läser igenom din redovisningstext för att se hur du upplevde kursmomentet.
+
+Jag tittar på din 'name.php' för att se att den fungerar både med riktiga namn och felhantering.
+
+Jag tittar på din 'search.php' och provar att söka olika namn och ser att man kan klicka sig vidare till namnet.
+
+Som vanligt tittar om din sida/sidor validerar i Unicorn.
+
+$TEACHER_SIGNATURE
+
+Status från rättningsverktyget:

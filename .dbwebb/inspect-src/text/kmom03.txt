@@ -1,0 +1,13 @@
+Då tittar vi igenom kmom03 med PHP!
+
+Jag läser som vanligt igenom din rapport och ser hur du upplevde kursmomentet.
+
+Jag kikar på din 'friday.php' för att se hur den ser ut en vanlig dag och en fredag.
+
+Jag kikar på din 'month.php' och är spänd att se hur nära du kommer förebilden för kalendern samt att du lyckats klura ut hur next/prev skall fungera.
+
+Jag kollar också om din sida/sidor validerar i Unicorn.
+
+$TEACHER_SIGNATURE
+
+Status från rättningsverktyget:

@@ -1,0 +1,11 @@
+Då avslutar vi med kmom06 och CRUD, sedan är det bara projektet kvar.
+
+Jag läser igenom din redovisningstext för att se hur du upplevde kursmomentet.
+
+Jag tittar på din hantering av inloggning och kontrollerar att den fungerar som tänkt.
+
+Som vanligt tittar om din sida/sidor validerar i Unicorn.
+
+$TEACHER_SIGNATURE
+
+Status från rättningsverktyget:
