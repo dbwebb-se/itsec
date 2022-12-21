@@ -13,9 +13,9 @@
 #
 #printf ">>> -------------- Post (all kmoms) ---------------------\n"
 
-# # Open localhost:1337 in browser
-# printf "Open localhost:1337/eshop/index in browser\n"
-# eval "$BROWSER" "http://127.0.0.1:1337/eshop/index" &
+# Open localhost:8182 in browser
+#printf "Open localhost:8182/htdocs in browser\n"
+#eval "$BROWSER" "http://127.0.0.1:8182/htdocs" &
 
 # # Open me/kmom01/redovisa
 # url="$REDOVISA_HTTP_PREFIX/~$ACRONYM/dbwebb-kurser/$COURSE/me/redovisa/htdocs"

@@ -11,6 +11,12 @@ function header {
 
 cd me/kmom10/eshop-app2 || exit 1
 
+docker-compose up -d
+
+# Open eshop, localhost:8182 in browser
+printf "Open localhost:8182/htdocs in browser\n"
+eval "$BROWSER" "http://127.0.0.1:8182/htdocs" &
+
 read -p "Done? "
 
 exit "$?"

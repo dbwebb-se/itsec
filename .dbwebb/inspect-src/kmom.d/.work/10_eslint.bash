@@ -18,7 +18,7 @@ if [[ ! -d "node_modules" ]]; then
     fi
 fi
 
-npm run linter "me/kmom05/bank-app" --silent || exit 1
+eslint -c .eslintrc.json --ext=js "me/kmom05/bank-app" --silent || exit 1
 
 read -p "All good. Done? "
 

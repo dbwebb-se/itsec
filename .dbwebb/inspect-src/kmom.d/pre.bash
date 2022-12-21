@@ -33,7 +33,9 @@ case $KMOM in
         code me/kmom05/
     ;;
     kmom10)
-        openUrl "$studentServerUrl/kmom10/eshop-app2/htdocs"
+        #openUrl "$studentServerUrl/kmom10/eshop-app2/htdocs"
+        header "OPENING FILES IN VSCODE"
+        code me/kmom10/
     ;;
 esac
 

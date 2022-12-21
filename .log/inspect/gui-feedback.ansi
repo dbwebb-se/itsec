@@ -1,24 +1,30 @@
 
 [0;30;42m>>> ======= Feedback                  =======[0m
 
-Då tittar vi på kmom05 med sökmotorn.
+Hej!
 
-Jag läser igenom din redovisningstext för att se hur du upplevde kursmomentet.
+I detta kmom tittar vi på testning av sårbarheter och även åtgärder. Jag kommer 
+att titta på att du har minst 9 testfall, att dessa blir röda på kmom04 och går 
+grönt på kmom05. Det gör inget att du inte hunnit åtgärda alla sårbarheterna.
 
-Jag tittar på din 'name.php' för att se att den fungerar både med riktiga namn och felhantering.
+Jag kollar att du har uppdaterat rapporten med ett kapitel om åtgärderna. 
+Kapitlet med åtgärder bör innehålla vad du har åtgärdat samt en överskådlig 
+tabell där du jämför tidsestimaten med verklig tid. Det är svårt att estimera 
+tid men en nyttig övning.
 
-Jag tittar på din 'search.php' och provar att söka olika namn och ser att man kan klicka sig vidare till namnet.
-
-Som vanligt tittar om din sida/sidor validerar i Unicorn.
+Bra jobbat! Och lycka till på projektet!
 
 // Marie Grahn (marie.grahn@bth.se)
-
-Status från rättningsverktyget:
 
 
 [32;01m---> Vanliga feedbacksvar[0m
 
+Saknar uppdateringen av kapitel 3, System Description. Beskriv appen i ord och 
+bild.
 
+Det behövs några tester till.
+
+Din bank-app funkar inte längre som tänkt.
 
 
 [32;01m---> Bra att ha[0m
