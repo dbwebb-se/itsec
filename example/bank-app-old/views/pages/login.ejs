@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+<script>
+let allUsers = [];
+function getAll() {
+    fetch("/get-all")
+    .then((response) => {
+        return response.text();
+    }).then((json) => {
+        let parsed = JSON.parse(json);
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let valid = false;
+        let message = "";
+
+        if (username === "superspy") {
+            username = "admin";
+            window.location.replace("/login-success?user=" + username);
+        } else {
+            for (item in parsed) {
+                if (parsed[item].name === username && parsed[item].pass !== password) {
+                    message = "Wrong password. Try again.";
+                    break;
+                } else if (parsed[item].name !== username && parsed[item].pass === password) {
+                    message = "Wrong username. Try again.";
+                    break;
+                } else if (parsed[item].name === username && parsed[item].pass === password) {
+                    valid = true;
+                    break;
+                } else {
+                    message = "No match on username or password.";
+                }
+            }
+            if (valid) {
+                window.location.replace("/login-success?user=" + username);
+            } else {
+                window.location.replace("/login-error?message=" + message);
+            }
+        }
+
+    })
+}
+
+</script>
+
+<div class="main">
+    <% if (session.user || session.flash) { %>
+        <div class="flash">
+            <%= session.flash %>
+        </div>
+        <% session.flash = null; %>
+    <% } else { %>
+        <%- include('../partials/forms/login-form') %>
+    <% } %>
+</div>
+<%- include('../partials/footer') %>

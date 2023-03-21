@@ -1,0 +1,14 @@
+<%- include('../partials/header') %>
+<div class="main">
+    <% if (session.flash) { %>
+        <div class="flash">
+            <%= session.flash %>
+        </div>
+        <% session.flash = null; %>
+    <% } %>
+    <div class="row">
+        <%- include('../partials/forms/transfer-form') %>
+        <%- include('../partials/forms/action-form') %>
+    </div>
+</div>
+<%- include('../partials/footer') %>

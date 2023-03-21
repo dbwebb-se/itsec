@@ -1,13 +1,17 @@
-const express = require('express');
-const session = require('express-session');
+import express from 'express';
+import session from 'express-session';
+
 const app = express();
 const port = 1337;
-let functions = require('./src/functions');
+
+import { accountCreate, accountUpdate, accountDelete, userUpdate } from './src/functions.js';
+import { loginUser, loginError, loginSuccess, logout, handleSignup, generateOneUserWithAccounts } from './src/functions.js';
+import { generateAdminView, processAdminView, getAll, transfer, makeTransfer, makeAction } from './src/functions.js';
 let manageFunctions = {
-    accountcreate: functions.accountcreate,
-    accountupdate: functions.accountupdate,
-    accountdelete: functions.accountdelete,
-    userupdate: functions.userupdate
+    account_create: accountCreate,
+    account_update: accountUpdate,
+    account_delete: accountDelete,
+    user_update: userUpdate
 };
 
 app.set('view engine', 'ejs');
@@ -54,29 +58,30 @@ app.get('/', (req, res) => res.render('pages/index'));
 
 app.get(['/manage', '/manage/:what/:action'], userAuth, async (req, res) => {
     if (req.params.what && req.params.action) {
-        let useFunction = req.params.what+req.params.action;
+        let useFunction = req.params.what+'_'+req.params.action;
+        
         manageFunctions[useFunction](req, res);
     } else {
-        functions.generateOneUserWithAccounts(req, res);
+        generateOneUserWithAccounts(req, res);
     }
 });
 
-app.get(['/admin-view', '/admin-view/:id'], adminAuth, async (req, res) => functions.generateAdminView(req, res));
-app.get('/process-admin-view', adminAuth, async (req, res) => functions.processAdminView(req, res));
-app.get('/login', (req, res) => functions.loginUser(req, res));
-app.get('/login-error', (req, res) => functions.loginError(req, res));
-app.get('/login-success', async (req, res) => functions.loginSuccess(req, res));
-app.get('/transfer', userAuth, async (req, res) => functions.transfer(req, res));
-app.get('/process-transfer', userAuth, async (req, res) => functions.makeTransfer(req, res));
-app.get('/process-action', userAuth, async (req, res) => functions.makeAction(req, res));
-app.get('/logout', (req, res) => functions.logout(req, res));
+app.get(['/admin-view', '/admin-view/:id'], adminAuth, async (req, res) => generateAdminView(req, res));
+app.get('/process-admin-view', adminAuth, async (req, res) => processAdminView(req, res));
+app.get('/login', (req, res) => loginUser(req, res));
+app.get('/login-error', (req, res) => loginError(req, res));
+app.get('/login-success', async (req, res) => loginSuccess(req, res));
+app.get('/transfer', userAuth, async (req, res) => transfer(req, res));
+app.get('/process-transfer', userAuth, async (req, res) => makeTransfer(req, res));
+app.get('/process-action', userAuth, async (req, res) => makeAction(req, res));
+app.get('/logout', (req, res) => logout(req, res));
 app.get('/signup', (req, res) => res.render('pages/signup'));
-app.get('/process-signup', async (req, res) => functions.handleSignup(req, res));
-app.get('/get-all', async (req, res) => functions.getAll(res));
+app.get('/process-signup', async (req, res) => handleSignup(req, res));
+app.get('/get-all', async (req, res) => getAll(res));
 
 
-app.use(function (req, res, next) {
-  res.status(404).render('pages/404');
+app.use(function (req, res) {
+    res.status(404).render('pages/404');
 });
 
 
