@@ -2,7 +2,7 @@ version: "3"
 
 services:
     app:
-        image: "itsec-proj:latest"
+        image: "epkmagr/itsec-bank:latest"
         container_name: "bank-app"
         ports:
             - "1337:1337"
