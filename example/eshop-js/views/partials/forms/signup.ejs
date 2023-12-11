@@ -1,0 +1,74 @@
+<h1 class="w-75">Skapa användare</h1>
+<form class="pretty w-75" id="userForm" method='post'>
+    <fieldset>
+        <p>
+            <label for='createFirstname'>Förnamn</label><br>
+            <input id='createfirstname' type='text' class='form-control' name='firstname' placeholder='Förnamn' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p><p>
+            <label for='createSurname'>Efternamn</label><br>
+            <input id='createSurname' type='text' class='form-control' name='surname' placeholder='Efternamn' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='createPhone'>Telefonnummer</label><br>
+            <input id='createPhone' type='number' class='form-control' name='phone' placeholder='Telefonnummer'/>
+        </p>
+        <p class='cf-desc'></p><p>
+            <label for='createEmail'>Email</label><br>
+            <input id='createEmail' type='email' class='form-control' name='email' placeholder='email@domainname.extension' minlength="8" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='createAddress'>Adress</label><br>
+            <input id='createAddress' type='text' class='form-control' name='address' placeholder='Adress'minlength="8" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='createPostcode'>Postnummer</label><br>
+            <input id='createPostcode' type='number' class='form-control' name='postcode' placeholder='Postnummer'/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='createCity'>Stad</label><br>
+            <input id='createCity' type='text' class='form-control' name='city' placeholder='Stad' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <p class='cf-label'>Kön</p>
+            <p>
+                <input id='createGenderWoman' type='radio' name='gender' value='Kvinna' checked='checked' />
+                <label for='createGenderWoman'>Kvinna</label>
+                
+            </p>
+            <p>
+                <input id='createGenderMan' type='radio' name='gender' value='Man' />
+                <label for='createGenderMan'>Man</label>
+            </p>
+            <p class='cf-desc'></p>
+        </p>
+        <p>
+            <label for='createPassword'>Lösenord</label><br>
+            <input id='createpPssword' type='password' class='form-control' name='password' placeholder='********' minlength="8" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='createPasswordAgain'>Verifiera lösenord</label><br>
+            <input id='createPasswordAgain-again' type='password' class='form-control' name='passwordAgain' placeholder='********' minlength="8" maxlength="128" required/>
+        </p>
+        <span>
+            <input id='createUser' type='submit' class='btn btn-light-blue w-100' name='createUserProfile' value='Skapa användare' />
+        </span>
+    </fieldset>
+</form>
+<div>
+    <a class="btn btn-block btn-light-blue w-75" href="/user/login">
+        <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        <span class="align-text-bottom pl-1">Tillbaka</span>
+    </a>
+</div> 
+<div class="bad_message">
+    <% if (message !== '') { %>
+        <%= message %>
+    <% } %>    
+</div>

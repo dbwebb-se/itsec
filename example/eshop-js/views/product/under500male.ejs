@@ -1,0 +1,31 @@
+<div class="mx-4">
+    <h1 class="h1-table">Produkter under 500kr Herr</h1>
+    <table class="table-overview">
+        <thead>
+            <tr>
+                <th scope="col" class="border-bottom-0">Tillverkare</th>
+                <th scope="col" class="border-bottom-0">Namn</th>
+                <th scope="col" class="border-bottom-0 hide-on-mobile">Storlek</th>
+                <th scope="col" class="border-bottom-0">Pris</th>
+                <th scope="col" class="border-bottom-0 hide-on-mobile">Färg</th>
+                <th scope="col" class="border-bottom-0"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const item of under500male) { %>
+            <tr (<%= counter %>) % 2 == 0 ? 'class="bg-light"' : "" >
+                <td><%= item.productManufacturer %></td>
+                <td><%= item.productName %></td>
+                <td><%= item.productSize %></td>
+                <td><%= item.productSellPrize %></td>
+                <td><%= item.productColor %></td>
+                <th scope="row" class="text-center">
+                    <a href="product/<%= item.productID %>">Mer information</a>
+                </th>
+            </tr>
+            <% counter++; %>
+            <% }; %>
+        </tbody>
+    </table>
+    <!-- <a class="btn btn-block btn-light-blue btn-margin-left-none w-50" href="/products/under500Male">Fler produkter</a> -->
+</div>

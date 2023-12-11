@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+
+<div class="main center">
+    <h1><%= title %></h1>
+    <div id="cartView" class="table-responsive">
+        <table class="table-overview border mb-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="border-bottom-0">Tillverkare</th>
+                    <th scope="col" class="border-bottom-0">Namn</th>
+                    <th scope="col" class="border-bottom-0">Storlek</th>
+                    <th scope="col" class="border-bottom-0">Pris</th>
+                    <th scope="col" class="border-bottom-0">Färg</th>
+                    <th scope="col" class="border-bottom-0">Antal</th>
+                    <th scope="col" class="border-bottom-0"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    amountOfItems = 0;
+                    counter = 0;
+                    totalPrice = 0;
+                %>
+                <% for (const item of cartItems) { %>
+                    <tr <%= (counter % 2) == 0 ? "class=bg-light border-bottom-0" : "" %>>
+                        <td><%= item.productManufacturer %></td>
+                        <td><%= item.productName %></td>
+                        <td><%= item.productSize %></td>
+                        <td><%= item.productSellPrize %></td>
+                        <td><%= item.productColor %></td>
+                        <td><%= item.amount %></td>
+                        <th scope="row">
+                            <a href="/product/<%= item.productID %>">Mer information</a>
+                        </th>
+                    </tr>
+                    <%
+                        amountOfItems += item.amount;
+                        counter++;
+                        totalPrice += item.productSellPrize * item.amount;
+                    %>
+                    <% }; %>
+            </tbody>
+        </table>
+        <% if (amountOfItems > 0) { %>
+            <div class="table-responsive">
+                <table class="table w-50 w-75-mobile border border-top-0 mx-auto">
+                    <thead>
+                        <tr class="text-center font-weight-bold">
+                            <th colspan="2">Beställningsinformation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Antal Produkter:</th>
+                            <td><%= amountOfItems %></td>
+                        </tr>
+                        <tr>
+                            <th>Summa:</th>
+                            <td><%= totalPrice %> kr</td>
+                        </tr>
+                        <tr>
+                            <th>Frakt:</th>
+                            <td><%= shipping %> kr</td>
+                        </tr>
+                        <tr>
+                            <th>Summa totalt:</th>
+                            <td><%= totalPrice + shipping %> kr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form class="pretty" id="cartRow" action="/cart/order" method='post'>
+                <button  class="btn btn-block btn-primary" name='cartCheckout' type="submit">Beställ</button>
+            </form>
+        <% } else if (amountOfItems < 1) { %>
+            <p>Din kundvagn innehåller för tillfället inga produkter.</p>
+        <% }; %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

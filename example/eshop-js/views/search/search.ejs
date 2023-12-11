@@ -1,0 +1,35 @@
+<%- include('../partials/header') %>
+<div class="main center">
+    <h1><%= title %></h1>
+
+    <div class="mx-4">
+        <h1>Antal träffar: <%= searchResultCount %></h1>
+        <table class="table-overview">
+            <thead>
+                <tr>
+                    <th scope="col" class="border-bottom-0">Tillverkare</th>
+                    <th scope="col" class="border-bottom-0">Namn</th>
+                    <th scope="col" class="border-bottom-0 hide-on-mobile">Storlek</th>
+                    <th scope="col" class="border-bottom-0">Pris</th>
+                    <th scope="col" class="border-bottom-0 hide-on-mobile">Färg</th>
+                    <th scope="col" class="border-bottom-0"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const item of searchResult) { %>
+                <tr (<%= counter %>) % 2 == 0 ? 'class="bg-light"' : "" >
+                    <td><%= item.productManufacturer %></td>
+                    <td><%= item.productName %></td>
+                    <td><%= item.productSize %></td>
+                    <td><%= item.productSellPrize %></td>
+                    <td><%= item.productColor %></td>
+                    <th scope="row" class="text-center">
+                        <a href="product/<%= item.productID %>">Mer information</a>
+                    </th>
+                </tr>
+                <% counter++; %>
+                <% }; %>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Eshop - <%= title %></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="icon" href="/images/favicon.ico">
+    <script src="https://use.fontawesome.com/0aee473986.js"></script>
+</head>
+<body>
+    <!-- header -->
+
+    <!-- navbar -->
+    <div>
+        <nav class="navbar">
+            <ul class="navbar-menu">
+                <li><a href="/">Start</a></li>
+                <li><a href="/category">Kategori</a></li>
+                <li class="w-50">
+                    <form action='/search' method='post'>
+                        <input class='w-100' id='search' type='text' name='search' placeholder='Sök'>
+                    </form>
+                </li>
+                <% if (session.user && session.user.name === "admin") { %>
+                    <li><a href="/admin-view">View Users&amp;Accounts</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else if (session.user) { %>
+                    <li><a href="/user/userProfile">Min sida</a></li>
+                    <li><a href="/user/logout">Logout</a></li>
+<!--                     <div class="dropdown">
+                        <li><a class="dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Min sida <span class="caret"></span>
+                        </a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownUser">
+                          <li><a class='dropdown-item' href="/user/profile">Min sida</a></li>
+                          <li><a class='dropdown-item' href="/user/logout">Logout</a></li>
+                        </ul>
+                    </div>  -->                     
+                <% } else { %>
+                    <li><a href="/user/login">Logga in</a></li>
+                <% } %>
+                <% counter = 0 %>
+                <% if (session.items) { %>
+                    <% for (const item of session.items) { %>
+                        <% counter += item.amount %>
+                    <% } %>
+                <% } %>
+                <li id='cart'><a href='/cart'>
+                    <i class='fas fa-shopping-cart'></i> Kundvagn (<%= counter %>)</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
