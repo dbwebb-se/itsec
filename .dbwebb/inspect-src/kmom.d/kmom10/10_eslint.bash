@@ -40,6 +40,7 @@ validation "me/kmom10/" "eslint"
 
 header "INSTALLING ASSIGNMENT IN DOCKER"
 cd me/kmom10/eshop-js || exit 1
+eval "docker compose up -d"
 eval "npm install"
 eval "npm start" &
 
