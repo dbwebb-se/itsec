@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pwd || exit
+cd me || exit
 
 e() { exit; }; export -f e
 
