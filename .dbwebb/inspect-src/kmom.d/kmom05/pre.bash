@@ -14,6 +14,13 @@ cd me || exit 1
 header "OPENING FILES IN VSCODE"
 code kmom05
 
+# header "INSTALLING ASSIGNMENT IN DOCKER"
+# cd kmom05/bank-app || exit 1
+# eval "npm install"
+# eval "npm start" &
+
 # header "OPEN ASSIGNMENT IN BROWSER"
-# url="$REDOVISA_HTTP_PREFIX/~$ACRONYM/dbwebb-kurser/$COURSE/me/$KMOM"
+# url="http://127.0.0.1:1337/"
+# echo "Starting bank-app on 1337"
+# printf "$url\n" 2>&1
 # eval "$BROWSER" "$url" &

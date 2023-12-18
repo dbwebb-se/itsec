@@ -11,7 +11,7 @@
 #   $REDOVISA_HTTP_POSTFIX
 #   eval "$BROWSER" "$url" &
 #
-#printf ">>> -------------- Post (all kmoms) ---------------------\n"
+printf ">>> -------------- Post (all kmoms) ---------------------\n"
 
 # Open localhost:8182 in browser
 #printf "Open localhost:8182/htdocs in browser\n"
