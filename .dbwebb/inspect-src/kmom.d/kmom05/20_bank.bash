@@ -15,7 +15,7 @@ eval "npm start" &
 
 header "OPEN ASSIGNMENT IN BROWSER"
 url="http://127.0.0.1:1337/"
-echo "Starting bank-app on 1337"
+echo "Opening bank-app on 1337"
 printf "$url\n" 2>&1
 eval "$BROWSER" "$url" &
 

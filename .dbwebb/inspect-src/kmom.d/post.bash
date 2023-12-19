@@ -14,6 +14,7 @@
 printf ">>> -------------- Post (all kmoms) ---------------------\n"
 
 if [[ "$KMOM" = "kmom10" ]]; then
+    cd me/kmom10/eshop-js || exit 1
     eval "docker compose down" &
 fi
 

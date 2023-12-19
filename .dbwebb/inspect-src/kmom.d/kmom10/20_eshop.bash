@@ -10,7 +10,7 @@ cd me || exit 1
 
 header "OPEN ASSIGNMENT IN BROWSER"
 url="http://127.0.0.1:30001/"
-echo "Starting eshop-js on 30001"
+echo "Opening eshop-js on 30001"
 printf "$url\n" 2>&1
 eval "$BROWSER" "$url" &
 

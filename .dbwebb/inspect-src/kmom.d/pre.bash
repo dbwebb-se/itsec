@@ -17,6 +17,7 @@
 printf ">>> -------------- Pre (all kmoms) ----------------------\n"
 
 echo $DIR
+echo " "
 
 # Open log
 echo "[$ACRONYM/$COURSE/$KMOM]" > "$LOG_DOCKER"
