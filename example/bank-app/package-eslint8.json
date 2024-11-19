@@ -8,21 +8,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "linter": "eslint .",
-    "linter-fix": "eslint . --fix",
+    "linter": "eslint -c .eslintrc.json --ext=mjs,js .",
+    "linterFix": "eslint -c .eslintrc.json --ext=mjs,js . -- --fix",
     "clean": "rm -rf build/",
     "clean-all": "npm run clean && rm -rf node_modules/ && rm -f package-lock.json"
   },
   "author": "Marie Grahn",
   "license": "ISC",
   "dependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.15.0",
     "ejs": "^3.1.9",
-    "eslint": "^9.1",
-    "express": "^4.21.1",
-    "express-session": "^1.18.1",
-    "globals": "^15.12.0",
-    "sqlite3": "^5.1.7"
+    "eslint": "^8.36.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "sqlite3": "^5.1.6"
   }
 }
