@@ -1,6 +1,6 @@
 /**
  * A module exporting functions to access the itsec database
- * regarding categories and products.
+ * regarding users.
  */
 "use strict";
 
@@ -135,7 +135,7 @@ export const getUserData = async (email) => {
     let sql = `CALL get_user(?);`;
 
     try {
-        if (email !== undefined && email.includes('@') && email.length < 80) {
+        if (email !== undefined && email != null && email.includes('@') && email.length < 80) {
             const result = await db.query(sql, [email]);
 
             return result[0];

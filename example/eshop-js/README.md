@@ -10,7 +10,7 @@ To run the application, the user needs to have Docker installed.
 
 To start the application, navigate to the application folder and run:
 
-```
+```bash
 docker-compose up -d
 ```
 
@@ -18,18 +18,22 @@ docker-compose up -d
 
 Once running, you can access the database with: `mysql:host=itsec-mariadb;` or by browsing to `http://localhost:8180/` to access an instance of [Adminer](https://www.adminer.org/).
 
-The default login is `root/example`.
+The Server is `itsec-mariadb`.
+The default login is Username/Password `root/example`.
+The Database is `itsec`.
 
 #### SQL
 
 The application will not load without the basic categories and these can be added by running `sql/restore.sql` either via `docker exec` or by using Adminer.
+Feel free to add stored procedures and import them to the database.
 
 ## Usage
 
 The website can be accessed by browsing to http://localhost:30001/ in your preferred browser. Or if you install the website with `npm install` and start it with `npm start`, the acces is http://localhost:3000/
 
 ## Problems
-1. If docker problems, try:   
+
+1. If docker problems, try:
    - docker-compose down -v (close docker containers and clears volumes)
    - docker-compose up -d
 2. If npm or terminal problems, try:

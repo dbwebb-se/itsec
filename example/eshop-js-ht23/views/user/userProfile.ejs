@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<main class="main w-50">
+    <% if (res !== '') { %>
+        <h1>Välkommmen, du är nu inloggad</h1>
+        <div class="d-flex justify-content-center p-2">
+        <div class="d-flex flex-column justify-content-center">
+            <table class="table my-2 border border-top-0">
+                <tr>
+                    <th>Kund ID</th>
+                    <td><%= res.userID %></td>
+                </tr>
+                <tr>
+                    <th>Namn</th>
+                    <td><%= res.userFirstName + " " + res.userSurName %></td>
+                </tr>
+                <tr>
+                    <th>Adress</th>
+                    <td><%= res.userAddress + ", " + res.userPostcode + " " + res.userCity%></td>
+                </tr>
+                <tr>
+                    <th>Telefonnummer</th>
+                    <td><%= res.userPhone %></td>
+                </tr>
+                <tr>
+                    <th>Mail</th>
+                    <td><%= res.userMail %></td>
+                </tr>
+                <tr>
+                    <th>Kön</th>
+                    <td><%= res.userGender == "0" ? 'Kvinna' : 'Man' %></td>
+                </tr>
+            </table>
+            <a class="btn btn-light-blue w-50" href="/orders">Se ordrar</a>
+            <a class="btn btn-light-blue w-50" href="/user/update">Redigera profil</a>
+            <a class="btn btn-light-blue w-50" href="/user/logout">Logga ut</a>
+        </div>
+    </div>
+    <% } %>
+
+    <div>
+        <% if (message !== '') { %>
+            <%= message %>
+        <% } %>    
+    </div>
+
+</main>
+<%- include('../partials/footer') %>

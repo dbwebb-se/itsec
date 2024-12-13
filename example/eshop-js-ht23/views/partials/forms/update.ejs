@@ -1,0 +1,87 @@
+<h1 class="w-75">Uppdatera användare</h1>
+<form class="pretty w-75" id="userUpdateForm" method='post'>
+    <fieldset>
+        <input type="hidden" id="userId" name="userId" value='<%= res.userID %>'>
+        <p>
+            <label for='updateFirstname'>Förnamn</label><br>
+            <input id='updatefirstname' type='text' class='form-control' name='firstname' value='<%= res.userFirstName %>' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p><p>
+            <label for='updateSurname'>Efternamn</label><br>
+            <input id='updateSurname' type='text' class='form-control' name='surname' value='<%= res.userSurName %>' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='updatePhone'>Telefonnummer</label><br>
+            <input id='updatePhone' type='number' class='form-control' name='phone' value='<%= res.userPhone %>'/>
+        </p>
+        <p class='cf-desc'></p><p>
+            <label for='updateEmail'>Email</label><br>
+            <input id='updateEmail' type='email' class='form-control' name='email' value='<%= res.userMail %>' minlength="8" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='updateAddress'>Adress</label><br>
+            <input id='updateAddress' type='text' class='form-control' name='address' value='<%= res.userAddress %>' minlength="8" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='updatePostcode'>Postnummer</label><br>
+            <input id='updatePostcode' type='number' class='form-control' name='postcode' value='<%= res.userPostcode %>'/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='updateCity'>Stad</label><br>
+            <input id='updateCity' type='text' class='form-control' name='city' value='<%= res.userCity %>' minlength="2" maxlength="128" required/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <p class='cf-label'>Kön</p>
+            <% if (res.userGender === 0) { %>
+                <p>
+                    <input id='updateGenderWoman' type='radio' name='gender' value='Kvinna' checked='checked' />
+                    <label for='updateGenderWoman'>Kvinna</label>
+                    
+                </p>
+                <p>
+                    <input id='updateGenderMan' type='radio' name='gender' value='Man' />
+                    <label for='updateGenderMan'>Man</label>
+                </p>
+            <% } else { %>
+                <p>
+                    <input id='updateGenderWoman' type='radio' name='gender' value='Kvinna' />
+                    <label for='updateGenderWoman'>Kvinna</label>
+                    
+                </p>
+                <p>
+                    <input id='updateGenderMan' type='radio' name='gender' value='Man' checked='checked' />
+                    <label for='updateGenderMan'>Man</label>
+                </p>
+            <% } %>
+            <p class='cf-desc'></p>
+        </p>
+        <!--         <p>
+            <label for='updatePassword'>Lösenord</label><br>
+            <input id='updatepPssword' type='password' class='form-control' name='password' value='********'/>
+        </p>
+        <p class='cf-desc'></p>
+        <p>
+            <label for='updatePasswordAgain'>Verifiera lösenord</label><br>
+            <input id='updatePasswordAgain-again' type='password' class='form-control' name='passwordAgain' value='********'/>
+        </p> -->
+        <span>
+            <input id='updateUser' type='submit' class='btn btn-light-blue w-100' name='updateUserProfile' value='Uppdatera användare' />
+        </span>
+    </fieldset>
+</form>
+<div>
+    <a class="btn btn-block btn-light-blue w-75" href="/user/userProfile">
+        <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        <span class="align-text-bottom pl-1">Tillbaka</span>
+    </a>
+</div> 
+<div class="bad_message">
+    <% if (message !== '') { %>
+        <%= message %>
+    <% } %>    
+</div>

@@ -382,3 +382,20 @@ body > div:nth-child(1) > nav > ul > li:nth-child(1) {
 input:invalid {
     background-color: lightpink;
 }
+
+iframe {
+    position: absolute;
+    top: 500;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Döljer iframe */
+    transition: opacity 0.5s ease; /* Lägger till en mjuk övergång */
+}
+
+.prize {
+    position: absolute;
+    top: 550px;
+    left: 50px;
+    z-index: 2;
+}

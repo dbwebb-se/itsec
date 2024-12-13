@@ -25,8 +25,8 @@
                     </form>
                 </li>
                 <% if (session.user && session.user.name === "admin") { %>
-                    <li><a href="/admin-view">Admin</a></li>
-                    <li><a href="/logout">Logga ut</a></li>
+                    <li><a href="/admin-view">View Users&amp;Accounts</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 <% } else if (session.user) { %>
                     <li><a href="/user/userProfile">Min sida</a></li>
                     <li><a href="/user/logout">Logout</a></li>

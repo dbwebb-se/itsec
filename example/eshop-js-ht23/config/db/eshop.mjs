@@ -1,0 +1,8 @@
+export const config = {
+    host: "localhost",
+    user: "user",
+    password: "password",
+    database: "itsec",
+    port: "33061",
+    debug: false
+};

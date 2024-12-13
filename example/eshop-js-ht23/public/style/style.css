@@ -1,0 +1,384 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-size: 18px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.main-wrap {
+    flex: 1 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 24px;
+}
+
+h1 {
+    font-weight: bold;
+    border-bottom: 1px solid #666;
+}
+
+.h1-table {
+    font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.h2 {
+    font-size: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.h3 {
+    font-size: 1.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.main {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    width: 80%;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;    
+}
+
+.good_message {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bad_message {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+body > div:nth-child(1) > nav > ul > li:nth-child(1) {
+    margin-left: 1em;
+}
+
+@media (max-width: 720px) {
+    .hide-on-mobile {
+        display: none;
+    }
+    .flex-column-mobile {
+        flex-direction: column !important;
+    }
+    .w-100-mobile {
+        width: 100% !important;
+    }
+    .w-75-mobile {
+        width: 75% !important;
+    }
+    .mx-auto-mobile {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Navbar */
+.navbar {
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid lightgrey;
+}
+
+.navbar-logo {
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.navbar-menu {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-menu input[type=text] {
+    font-size: large;
+}
+
+.navbar-menu li {
+    margin-right: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.navbar-menu li a {
+    color: #7d7c7c;
+    text-decoration: none;
+    font-size: larger;
+}
+
+.navbar-menu li a:hover {
+    color: black;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    position: inherit;
+    width: 100%;
+    background-color: #f8f8f8;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Product tables */
+.table-overview,
+.table-detail {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2.5em;
+}
+
+.table-overview thead,
+.table-detail thead {
+    box-shadow: 0 1px 0 #aaa;
+}
+
+.table-overview th,
+.table-detail th {
+    vertical-align: bottom;
+    font-size: large;
+    font-weight: bold;
+    text-align: left;
+    height: 2em;
+}
+
+.table-overview tr,
+.table-detail tr {
+    box-shadow: 0 1px 0 #ccc;
+    height: 1.5em;
+}
+
+.table-overview td,
+.table-detail td {
+    text-align: left;
+}
+
+/* Centers login form on /user/login */
+
+.login .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.login fieldset {
+    width: 100%;
+}
+
+/* Centers login form on /user/create */
+
+.create .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.edit .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buyMale .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buyFemale .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.add .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buy .main-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.buyMale fieldset {
+    width: 100%;
+}
+
+.buyFemale fieldset {
+    width: 100%;
+}
+
+.create fieldset {
+    width: 100%;
+}
+
+.edit fieldset {
+    width: 100%;
+}
+
+.buy fieldset {
+    width: 100%;
+}
+
+.add fieldset {
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 1em;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-margin {
+    margin: 0 3em 1em 3em;
+}
+
+.btn-margin-left-none {
+    margin: 0 3em 1em 0;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-light-blue {
+    background: #3DA2E9;
+    color: #FFF;
+    border-color: #007BFF;
+}
+
+.btn-light-blue:hover {
+    color: #FFF;
+    background-color: #1985F9;
+    border-color: #0062CC;
+}
+
+#addToCartComplete {
+    height: 20px;
+}
+
+.removeFromCart {
+    color: red;
+}
+
+.removeButton {
+    background: none;
+    color: red;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.cartButtons {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.fa-minus::before {
+    padding-left: 0.5em;
+}
+
+.fa-plus::before {
+    padding-right: 0.5em;
+}
+
+/* Styling for good locking */
+.w-30 {
+    width: 30%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-75 {
+    width: 75%;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+.p-2 {
+    padding: 0.5rem!important;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.align-content-center {
+    -ms-flex-line-pack: center!important;
+    align-content: center!important;
+}
+
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+
+/* cart */
+.oneRow {
+    display: flex;
+}
+
+.amountCart {
+    width: 2em;
+    text-align: center;
+}
+
+.paddingLeftO {
+    margin-left: -0.5em;
+}
+
+input:invalid {
+    background-color: lightpink;
+}

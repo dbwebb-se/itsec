@@ -260,6 +260,7 @@ INSERT INTO OrderItem (
 ) VALUES (1, 1, 2);
 
 -- Stored procedures
+-- UserController
 DROP PROCEDURE IF EXISTS get_user;
 DELIMITER ;;
 CREATE PROCEDURE get_user(
@@ -359,4 +360,292 @@ BEGIN
     WHERE userID = a_userID;
 END
 ;;
+DELIMITER ;
+
+-- CartController
+DROP PROCEDURE IF EXISTS create_order;
+DELIMITER ;;
+CREATE PROCEDURE create_order(
+    `a_userID` INTEGER,
+    `a_couponID` INTEGER
+)
+BEGIN
+    DECLARE newOrderId INT;
+    INSERT INTO Orders (
+        userID,
+        couponID
+    ) VALUES (
+        a_userID,
+        a_couponID);
+    SET newOrderId = LAST_INSERT_ID();
+    SELECT newOrderId AS orderId;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS create_order_item;
+DELIMITER ;;
+CREATE PROCEDURE create_order_item(
+    `a_orderID` INTEGER,
+    `a_productID` INTEGER,
+    `a_productAmount` INTEGER
+)
+BEGIN
+    INSERT INTO OrderItem (
+        orderID,
+        productID,
+        productAmount
+    ) VALUES (
+        a_orderID,
+        a_productID,
+        a_productAmount);
+
+    UPDATE Product
+    SET productAmount = productAmount - a_productAmount
+    WHERE productID = a_productID;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS get_order_item;
+DELIMITER ;;
+CREATE PROCEDURE get_order_item(
+	a_orderID INTEGER
+)
+BEGIN
+    SELECT
+		*
+    FROM `OrderItem`
+    WHERE
+		`orderID` = a_orderID;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS get_one_product;
+DELIMITER ;;
+CREATE PROCEDURE get_one_product(
+	a_productID INTEGER
+)
+BEGIN
+    SELECT
+		*
+    FROM `Product`
+    WHERE
+		`productID` = a_productID;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS hard_delete_user;
+DELIMITER ;;
+CREATE PROCEDURE hard_delete_user(
+	a_userID INTEGER
+)
+BEGIN
+    DELETE oi
+    FROM OrderItem oi
+    JOIN Orders o ON oi.orderID = o.orderID
+    WHERE o.userID = a_userID;
+
+    DELETE FROM Orders WHERE userID=a_userID;
+    DELETE FROM User WHERE userID = a_userID;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS update_order;
+DELIMITER ;;
+CREATE PROCEDURE update_order(
+	a_orderID INTEGER,
+    a_price INTEGER,
+    a_status VARCHAR(80)
+)
+BEGIN
+    UPDATE Orders SET
+        orderStatus = a_status,
+        price = a_price
+    WHERE orderID = a_orderID;
+END
+;;
+DELIMITER ;
+
+-- OrderController
+DROP PROCEDURE IF EXISTS get_user_data;
+DELIMITER ;;
+CREATE PROCEDURE get_user_data(
+)
+BEGIN
+    SELECT
+        userID,
+        userFirstName,
+        userSurName,
+        userPhone,
+        userMail,
+        userGender,
+        userAddress,
+        userPostcode,
+        userCity
+    FROM User;
+END
+;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS get_orders_by_user;
+DELIMITER ;;
+CREATE PROCEDURE get_orders_by_user(
+    IN `a_userId` INTEGER
+)
+BEGIN
+    SELECT * FROM Orders WHERE userID = a_userId;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS get_one_order;
+DELIMITER ;;
+CREATE PROCEDURE get_one_order(
+    IN `a_orderId` INTEGER
+)
+BEGIN
+    SELECT * FROM OrderItem WHERE orderID = a_orderId;
+END;;
+DELIMITER ;
+
+-- CartController
+DROP PROCEDURE IF EXISTS show_categories;
+DELIMITER ;;
+CREATE PROCEDURE show_categories(
+    IN `a_gender` INTEGER
+)
+BEGIN
+    SELECT * 
+    FROM Category  
+    WHERE 
+        gender = a_gender AND
+        parentID IS NULL;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS show_sub_categories;
+DELIMITER ;;
+CREATE PROCEDURE show_sub_categories(
+    IN `a_parentId` INTEGER
+)
+BEGIN
+    SELECT * 
+    FROM Category  
+    WHERE 
+        parentID =  a_parentId;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS show_specific_category;
+DELIMITER ;;
+CREATE PROCEDURE show_specific_category(
+    IN `a_parentId` INTEGER
+)
+BEGIN
+    DECLARE categoryExists INT;
+
+    SELECT COUNT(*) INTO categoryExists 
+    FROM Category  
+    WHERE 
+        categoryID = a_parentId;
+    
+    IF categoryExists > 0 THEN
+            SELECT * FROM Category WHERE categoryID = a_parentId;
+    ELSE
+        SELECT NULL AS categoryExist;
+    END IF;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS show_products_from_specific_category;
+DELIMITER ;;
+CREATE PROCEDURE show_products_from_specific_category(
+    IN `a_categoryId` INTEGER
+)
+BEGIN
+    SELECT *
+    FROM Product
+    WHERE 
+        productCategoryID = a_categoryId;
+END;;
+DELIMITER ;
+
+-- ProductController
+DROP PROCEDURE IF EXISTS show_products;
+DELIMITER ;;
+CREATE PROCEDURE show_products(
+    IN `a_gender` INTEGER,
+    IN `a_limit` INTEGER
+)
+BEGIN
+    IF a_limit IS NOT NULL AND a_limit != 0 THEN
+        SELECT *
+        FROM Product
+        WHERE productGender = a_gender 
+        LIMIT a_limit;
+    ELSE
+        SELECT *
+        FROM Product
+        WHERE productGender = a_gender;
+    END IF;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS show_products_under500;
+DELIMITER ;;
+CREATE PROCEDURE show_products_under500(
+    IN `a_gender` INTEGER
+)
+BEGIN
+    SELECT *
+    FROM Product
+    WHERE productGender = a_gender AND productSellPrize < 500 
+    ORDER BY productSellPrize;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS search_products;
+DELIMITER ;;
+CREATE PROCEDURE search_products(
+    IN `a_searchString` VARCHAR(40),
+    IN `a_searchInt` INTEGER
+)
+BEGIN
+    IF a_searchString IS NOT NULL AND a_searchString != '%%' THEN
+        SELECT *
+        FROM Product
+        WHERE 
+            productName LIKE a_searchString OR
+            productManufacturer LIKE a_searchString OR
+            productOriginCountry LIKE a_searchString OR
+            productColor LIKE a_searchString OR
+            productSellPrize = a_searchInt;
+    ELSE
+        SELECT * 
+        FROM products;
+    END IF;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS show_one_product;
+DELIMITER ;;
+CREATE PROCEDURE show_one_product(
+    IN `a_productId` INTEGER
+)
+BEGIN
+    DECLARE productExists INT;
+
+    SELECT COUNT(*) INTO productExists 
+    FROM Product 
+    WHERE productID = a_productId;
+
+    IF productExists > 0 THEN
+        SELECT * FROM Product WHERE productID = a_productId;
+    ELSE
+        SELECT NULL AS product;
+    END IF;
+END;;
 DELIMITER ;

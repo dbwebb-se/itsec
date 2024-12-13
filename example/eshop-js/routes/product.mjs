@@ -5,7 +5,8 @@ const router = Router();
 
 router.get('/product/:id', async (req, res) => {
     let data = {
-        title: "Products"
+        title: "Products",
+        message: ''
     };
     data.res = await showSpecificProduct(parseInt(req.params.id));
     data.loggedIn = (req.session.user) ? true : false;
@@ -17,7 +18,7 @@ router.get('/product/:id', async (req, res) => {
     }
     req.session.currentItem = data.res;
     req.session.save();
-    if (data.res == undefined) {
+    if (data.res == undefined || data.res.product === null) {
         res.redirect('/');
     } else {
         res.render('product/product', data);

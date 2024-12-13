@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<% if (category.gender == 0) { %>
+    <% gender = 'Dam' %>
+<% } else { %>
+    <% gender = 'Herr' %>
+<% } %>
+
+<div class="main center">
+    <h1><%= title %></h1>
+
+    <div class="d-flex flex-row justify-content-center p-2">
+        <h2><%= category.categoryName %> (<%= gender %>)</h2>
+        <div class="row text-center mr-0 ml-0">
+            <% for (const item of categories) { %>
+                <div class="mt-3 mb-3 col-md-4">
+                    <a class="btn btn-block btn-light-blue"
+                    href="category/<%= item.categoryID %>"><%= item.categoryName; %></a>
+                </div>
+            <% }; %>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-block btn-light-blue" href="/category">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            <span class="align-text-bottom pl-1">Tillbaka</span>
+        </a>
+    </div>  
+    
+</div>
+<%- include('../partials/footer') %>

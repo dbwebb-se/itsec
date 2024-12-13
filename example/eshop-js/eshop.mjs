@@ -6,6 +6,8 @@ import { dirname } from 'path';
 import { logStartUpDetailsToConsole } from './middleware/index.js';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import { format } from 'date-fns';
+import { sv } from 'date-fns/locale';
 
 // Server Initialization
 dotenv.config();
@@ -36,10 +38,11 @@ app.use(session({
 }));
 app.use((req, res, next) => {
     res.locals.session = req.session;
-    // res.set('Content-Security-Policy',
-    //     "default-src 'self'; frame-ancestors 'self'; form-action 'self';");
     next();
 });
+
+// Make a Swedish date format feature available in views
+app.locals.formatDate = (date, formatString) => format(date, formatString, { locale: sv });
 
 // Local Modules
 import homeRoute from './routes/homeRoute.mjs';

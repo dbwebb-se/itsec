@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<div class="main center">
+    <h1><%= title %></h1>
+    <div id="cartView" class="table-responsive">
+        <table class="table-overview border mb-4">
+            <thead>
+                <tr>
+                    <th scope="col" class="border-bottom-0">Ordernummer</th>
+                    <th scope="col" class="border-bottom-0">Tid</th>
+                    <th scope="col" class="border-bottom-0"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    counter = 0;
+                %>
+                <% for (const item of orderItems) { %>
+                    <tr <%= (counter % 2) == 0 ? "class=bg-light border-bottom-0" : "" %>>
+                        <td><%= item.orderId %></td>
+                        <td><%= item.purchaseTime %></td>
+                        <th scope="row">
+                            <a href="/order/<%= item.orderId %>">Mer information</a>
+                        </th>
+                    </tr>
+                    <%
+                        counter++;
+                    %>
+                <% }; %>
+            </tbody>
+        </table>
+        <div>
+            <a class="btn btn-block btn-light-blue" href="/user/userProfile">
+                <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+                <span class="align-text-bottom pl-1">Tillbaka</span>
+            </a>
+        </div> 
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

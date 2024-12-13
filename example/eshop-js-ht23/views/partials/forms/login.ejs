@@ -1,0 +1,29 @@
+<h1 class="w-75">Logga in</h1>
+<form class="pretty" id="userForm" method='post'>
+    <fieldset>
+        <p>
+            <label for='loginEmail'>Email</label><br>
+            <input type="email" name="loginEmail" id="loginEmail" class='form-control w-75' placeholder="email@domainname.extension" minlength="8" maxlength="128" required>
+        </p>
+        <p>
+            <label for='loginPassword'>Lösenord</label><br>
+            <input type="password" name="loginPassword" id="loginPassword" class='form-control w-75' placeholder="********" minlength="8" maxlength="128" required>
+        </p>
+        <span>
+            <input id='form-element-submit' type='submit' class='btn btn-light-blue w-75 my-2' name='submitLogin' value='Logga in' />
+        </span>
+
+    </fieldset>
+</form>
+
+<form class="pretty" id="userForm" action="/user/create" method='get'>
+    <span>
+        <input id='form-element-create' type='submit' class='btn btn-light-blue w-75 my-2' name='createUser' value='Skapa ny användare' />
+    </span>
+</form>
+
+<div class="bad_message">
+    <% if (message !== '') { %>
+        <%= message %>
+    <% } %>    
+</div>

@@ -91,9 +91,13 @@ router.get('/user/update', async (req, res) => {
     };
 
     const result = await getUserData(req.session.user);
-    data.res = result[0];
+    if (result) {
+        data.res = result[0];
 
-    res.render('user/userUpdate', data);
+        res.render('user/userUpdate', data);
+    } else {
+        res.redirect('/');
+    }
 });
 
 router.post('/user/update', async (req, res) => {

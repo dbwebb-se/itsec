@@ -1,0 +1,38 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+    eshop:
+        build: .
+        image: itsec/eshop
+        container_name: itsec-eshop
+        ports:
+            - "30001:3000"
+        depends_on: 
+            - mariadb
+
+    mariadb:
+        image: mariadb:latest
+        restart: always
+        container_name: itsec-mariadb
+        environment:
+            MYSQL_DATABASE: itsec
+            MARIADB_ROOT_PASSWORD: example
+        ports:
+            - 33061:3306
+        command:
+            --init-file /docker-entrypoint-initdb.d/restore.sql
+        volumes:
+            - my-datavolume:/var/lib/mysql
+            - ./models/sql/restore.sql:/docker-entrypoint-initdb.d/restore.sql
+        depends_on: 
+            - mariadb:
+                condition: service_completed_successfully
+                restart: true
+            - adminer:
+                condition: service_started
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8180:8080

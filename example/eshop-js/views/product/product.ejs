@@ -92,5 +92,10 @@
             <span class="align-text-bottom pl-1">Tillbaka</span>
         </a>
     </div>
+    <div class="bad_message">
+        <% if (message !== '') { %>
+            <%= message %>
+        <% } %>    
+    </div>
 </main>
 <%- include('../partials/footer') %>

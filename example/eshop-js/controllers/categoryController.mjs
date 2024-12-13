@@ -5,8 +5,8 @@
 "use strict";
 
 import mysql from "promise-mysql";
-//import config from "../config/db/eshop.json" assert { type: "json" };//eslint-disable-line
 import { config } from "../config/db/eshop.mjs";
+
 let db;
 
 /**
@@ -33,14 +33,13 @@ let db;
  * @returns {RowDataPacket} Result set from the query.
  */
 export const getAllCategoriesGender = async (gender) => {
-    //const sql = `CALL show_products();`;
-    const sql = `SELECT * FROM Category  WHERE gender=` + gender + ` AND parentID IS NULL`;
+    const sql = `CALL show_categories(?);`;
 
     try {
         if (gender == 0 || gender == 1) {
-            const result = await db.query(sql);
+            const result = await db.query(sql, [gender]);
 
-            return result;
+            return result[0];
         }
         return [];
     } catch (error) {
@@ -55,14 +54,13 @@ export const getAllCategoriesGender = async (gender) => {
  * @returns {RowDataPacket} Result set from the query.
  */
 export const getAllSubCategories = async (parentId) => {
-    //const sql = `CALL show_products();`;
-    const sql = `SELECT * FROM Category  WHERE parentID=` + parentId;
+    const sql = `CALL show_sub_categories(?);`;
 
     try {
-        if (!isNaN(parentId)) {
-            const result = await db.query(sql);
+        if (!isNaN(parentId) && parentId < 100000) {
+            const result = await db.query(sql, [parentId]);
 
-            return result;
+            return result[0];
         }
         return [];
     } catch (error) {
@@ -76,13 +74,12 @@ export const getAllSubCategories = async (parentId) => {
  *
  * @returns {RowDataPacket} Result set from the query.
  */
-export const getSpecificCategory = async (categoryId) => {
-    //const sql = `CALL show_products();`;
-    const sql = `SELECT * FROM Category  WHERE categoryID=` + categoryId;
+export const getSpecificCategory = async (parentId) => {
+    const sql = `CALL show_specific_category(?);`;
 
     try {
-        if (!isNaN(categoryId)) {
-            const result = await db.query(sql);
+        if (!isNaN(parentId) && parentId < 100000) {
+            const result = await db.query(sql, [parentId]);
 
             return result[0];
         }
@@ -99,14 +96,13 @@ export const getSpecificCategory = async (categoryId) => {
  * @returns {RowDataPacket} Result set from the query.
  */
 export const getProductsFromSpecificCategory = async (categoryId) => {
-    //const sql = `CALL show_products();`;
-    const sql = `SELECT * FROM Product  WHERE productCategoryID=` + categoryId;
+    const sql = `CALL show_products_from_specific_category(?);`;
 
     try {
-        if (!isNaN(categoryId)) {
-            const result = await db.query(sql);
+        if (!isNaN(categoryId) && categoryId < 100000) {
+            const result = await db.query(sql, [categoryId]);
 
-            return result;
+            return result[0];
         }
         return [];
     } catch (error) {

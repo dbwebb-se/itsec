@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+<main class="main">
+    <div class="d-flex flex-column justify-content-center mt-4">
+        <div class="home w-75">
+            <div class="d-flex flex-row flex-column-mobile space-around">
+                <div class="col-md-4 p-2 w-50 w-100-mobile">
+                    <% if (res !== undefined && res.productImage) { %>
+                        <img  class="img-fluid" src="<%= res.productImage %>" alt="<%= res.productName %>">
+                    <% } else { %>
+                        <img  class="img-fluid" src="/images/products/missing_image.png" alt="Image missing">
+                    <% } %>
+                </div>
+                <div class="col-md-4 p-2 w-50 w-100-mobile align-content-center">
+                    <div class="d-flex flex-column justify-content-between h-100 bg-light border h-25 mh-10">
+                        <div class="p-3 mb-2 bg-light border text-center border-right-0 border-left-0 border-top-0">
+                            <h2 class="h2"><%= res.productName %></h2>
+                        </div>
+                        <div class="p-3 mb-2 bg-light text-center border-right-0 border-left-0 h-25">
+                            <h3 class="h3">Webblager:</h3>
+                            <p>
+                                <% if (res.productAmount <= 0) { %>
+                                    Ej i lager
+                                    <% } else if (res.productAmount < 5) { %>
+                                    Endast ett fåtal kvar i lager
+                                    <% } else if (res.productAmount > 5) { %>
+                                    I lager: <%= res.productAmount %>
+                                <% } %>                                      
+                            </p>
+                        </div>
+                        <div class="pt-4 p-3 bg-light border text-center border-right-0 border-left-0 border-bottom-0 h-50">
+                            <h3 class="h3">Pris:</h3>
+                            <p><%= res.productSellPrize %> kr</p>
+                            <% if (res.productAmount > 0) { %>
+                                <% if (loggedIn === true) { %>
+                                    <form class="pretty" id="addToCart" method='post'>
+                                        <span>
+                                            <input id='form-element-create' type='submit' class='btn btn-light-blue w-75 my-2' name='addToCart' value='Lägg i kundvagnen' />
+                                        </span>
+                                    </form>
+                                <% } else { %>
+                                    <a class='btn btn-light-blue w-50 my-2' href='/user/login'>Logga in</a>
+                                <% } %>
+                                <% if (cartMessage) { %>
+                                    <%= cartMessage %>
+                                <% } %> 
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2">
+                <table class="table border border-top-0">
+                    <tr>
+                        <th scope="col">Produkt ID</th>
+                        <td><%= res.productID %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Namn</th>
+                        <td><%= res.productName %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Tillverkare</th>
+                        <td><%= res.productManufacturer %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Ursprungsland</th>
+                        <td><%= res.productOriginCountry %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Vikt</th>
+                        <td><%= res.productWeight %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Storlek</th>
+                        <td><%= res.productSize %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Färg</th>
+                        <td><%= res.productColor %></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Kön</th>
+                        <td><%= res.productGender == 0 ? "Dam" : "Herr" %></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-block btn-light-blue" href="/">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+            <span class="align-text-bottom pl-1">Tillbaka</span>
+        </a>
+    </div>
+</main>
+<%- include('../partials/footer') %>
