@@ -1,7 +1,15 @@
 <%- include('../partials/header') %>
 
+<% if (category[0].gender == 0) { %>
+    <% gender = 'Dam' %>
+<% } else { %>
+    <% gender = 'Herr' %>
+<% } %>
+
 <div class="main center">
     <h1><%= title %></h1>
+
+    <h2 class="center"><%= category[0].categoryName %> - <%= gender %></h2>
 
     <table class="table-overview">
         <thead>

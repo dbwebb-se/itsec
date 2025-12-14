@@ -29,16 +29,7 @@
                     <li><a href="/logout">Logout</a></li>
                 <% } else if (session.user) { %>
                     <li><a href="/user/userProfile">Min sida</a></li>
-                    <li><a href="/user/logout">Logout</a></li>
-<!--                     <div class="dropdown">
-                        <li><a class="dropdown-toggle" href="#" role="button" id="dropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Min sida <span class="caret"></span>
-                        </a></li>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownUser">
-                          <li><a class='dropdown-item' href="/user/profile">Min sida</a></li>
-                          <li><a class='dropdown-item' href="/user/logout">Logout</a></li>
-                        </ul>
-                    </div>  -->                     
+                    <li><a href="/user/logout">Logout</a></li>                    
                 <% } else { %>
                     <li><a href="/user/login">Logga in</a></li>
                 <% } %>

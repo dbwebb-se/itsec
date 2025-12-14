@@ -37,19 +37,21 @@ router.get('/category/:parentId', async (req, res) => {
     }
 });
 
+router.post('/category/:parentId', (req, res) => {
+    res.send('This is the category route (POST)');
+});
+
 router.get('/category/category/:categoryId', async (req, res) => {
     // Shows all the products with in a subcategory for a gender
     let data = {
-        title: ''
+        title: 'Underkategori'
     };
 
-    data.title = req.params.categoryName;
+    data.category = await getSpecificCategory(parseInt(req.params.categoryId));
+    data.categoryId = parseInt(req.params.categoryId);
     data.products = await getProductsFromSpecificCategory(parseInt(req.params.categoryId));
 
-    if (data.products.length === 0) {
-        res.redirect('/');
-    } else {
-        res.render('category/productsInCategory', data);    }
+    res.render('category/productsInCategory', data);
 });
 
 export default router;
